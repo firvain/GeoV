@@ -1,0 +1,16 @@
+{
+  "preset": "default",
+  "whiteSpace": {
+    "value": " ",
+    "after": {
+      "FunctionReservedWord": 1
+    }},
+  "plugins": ["esformatter-add-trailing-commas",
+  "esformatter-quotes",
+  "esformatter-semicolons",
+  "esformatter-eol-last"
+  ],
+  "quotes": {
+    "type": "single"
+  }
+}

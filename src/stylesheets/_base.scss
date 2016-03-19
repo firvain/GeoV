@@ -1,0 +1,32 @@
+@import 'meyer-reset';
+@import 'variables';
+@import 'toolbox';
+// @import '../node_modules/material-design-lite/src/material-design-lite';
+@import 'ol';
+@import 'ol3-sidebar';
+// @import 'mdi';
+// @import "../bower_components/sass-mediaqueries/_media-queries.scss";
+// @import "../bower_components/animatewithsass/_properties";
+// @import "../bower_components/animatewithsass/_fading-entrances/fading-entrances.scss";
+html {
+  box-sizing: border-box;
+  height: 100%;
+
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+* {
+  // border: 1px solid red!important;
+}
+
+

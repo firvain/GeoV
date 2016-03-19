@@ -1,0 +1,50 @@
+$sidebar-bg: rgba(255, 255, 255, .4) !default;
+$sidebar-border-width: 3px !default;
+$sidebar-border-radius: 4px !default;
+$sidebar-border: $sidebar-border-width solid transparent !default;
+
+$tab-fg: #fff !default;
+$tabs-bg: $primary-color !default;
+$tab-hover-fg: $primary-color-text !default;
+$tab-hover-bg: $primary-color-light !default;
+$tab-active-fg: $primary-color-text !default;
+$tab-active-bg: $primary-color !default;
+
+$move-map-in-xs: false !default;
+
+@import "sidebar-base";
+
+.sidebar {
+    background-color: $sidebar-bg;
+
+    @media (min-width: $threshold-sm) {
+        border: $sidebar-border;
+        border-radius: $sidebar-border-radius;
+    }
+}
+
+.sidebar-left {
+    border-right: $sidebar-border;
+}
+
+.sidebar-right {
+    border-left: $sidebar-border;
+}
+
+.sidebar-tabs {
+    overflow: hidden;
+
+    @media (min-width: $threshold-sm) {
+        border-radius: $sidebar-inner-border-radius 0 0 $sidebar-inner-border-radius;
+
+        .collapsed & {
+            border-radius: $sidebar-inner-border-radius;
+        }
+    }
+}
+
+.sidebar-content {
+    @media (min-width: $threshold-sm) {
+        border-radius: 0 $sidebar-inner-border-radius $sidebar-inner-border-radius 0;
+    }
+}
