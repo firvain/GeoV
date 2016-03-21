@@ -18,7 +18,6 @@ export default {
 
 <style lang="scss">
 @import "./stylesheets/app";
-
 #app {
 
   font-family: 'Roboto', sans-serif;

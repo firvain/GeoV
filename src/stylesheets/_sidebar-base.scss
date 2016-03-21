@@ -15,10 +15,10 @@ $tab-font-size: 12pt !default;
 $tab-bg: null !default;
 $tab-transition: 80ms !default;
 
-$header-fg: $tab-active-fg !default;
-$header-bg: $tab-active-bg !default;
+$header-fg: $tab-fg !default;
+$header-bg: $tabs-bg!default;
 
-$content-bg: $primary-color-text !default;
+$content-bg: $color-primary-contrast !default;
 $content-padding-vertical: 10px !default;
 $content-padding-horizontal: 20px !default;
 

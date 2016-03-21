@@ -29,7 +29,12 @@ export default {
 }
 .ol-control {
   button {
-    background-color: $accent-color;
+    background-color: $color-primary !important;
+    &:hover {
+    background-color: $color-primary-contrast !important;
+    color: $color-accent;
+
+    }
   }
 }
 </style>

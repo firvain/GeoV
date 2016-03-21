@@ -1,4 +1,5 @@
 const ol = require('openlayers');
+
 function createMap(el) {
   const myMap = new ol.Map({
     target: el,
@@ -16,5 +17,4 @@ function createMap(el) {
   });
   return myMap;
 }
-
 export default createMap;

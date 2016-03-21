@@ -1,39 +1,29 @@
 <template>
-<div id="sidebar" class="sidebar collapsed">
-  <!-- Nav tabs -->
-  <div class="sidebar-tabs">
-
-    <sidebarlist :list="tasks"></sidebarlist>
-    <sidebarlist :list="[{ href: 'settings', iconame: 'settings', disabled: false, header: 'Settings' }]"></sidebarlist>
-
-  <!-- <ul role="tablist">
-    <li><a href="#settings" role="tab"><i class="material-icons">settings</i></a></li>
-  </ul> -->
-</div>
-<!-- Tab panes -->
-<div class="sidebar-content">
-  <div class="sidebar-pane" id="profile">
-    <h1 class="sidebar-header">
-    profile
-    <span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></span>
-    </h1>
-    <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
-    <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+  <div id="sidebar" class="sidebar collapsed">
+    <!-- Nav tabs -->
+    <div class="sidebar-tabs">
+      <sidebarlist :list="tasks"></sidebarlist>
+      <sidebarlist :list="[{ href: 'settings', iconame: 'settings', disabled: false, header: 'Settings' }]"></sidebarlist>
+    </div>
+    <!-- Tab panes -->
+    <div class="sidebar-content">
+      <div class="sidebar-pane" id="profile">
+        <h1 class="sidebar-header">
+          profile
+          <span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></span>
+        </h1>
+        <search-properties></search-properties>
+      </div>
+      <div class="sidebar-pane" id="settings">
+        <h1 class="sidebar-header">Settings
+          <span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></span>
+        </h1>
+      </div>
+    </div>
   </div>
-<!--   <div class="sidebar-pane" id="home">
-    <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></i></span></h1>
-  </div>
-  <div class="sidebar-pane" id="messages">
-    <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></span></h1>
-  </div> -->
-  <div class="sidebar-pane" id="settings">
-    <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></span></h1>
-  </div>
-</div>
-</div>
 </template>
+
+
 <script >
 /* eslint-disable*/
 /**
@@ -48,6 +38,7 @@
  */
 import $ from 'jquery';
 import sidebarlist from './sidebarlist';
+import searchProperties from './search-properties';
 $.fn.sidebar = function(options) {
     var $sidebar = this;
     var $tabs = $sidebar.find('ul.sidebar-tabs, .sidebar-tabs > ul');
@@ -124,6 +115,7 @@ $.fn.sidebar = function(options) {
 export default {
   components: {
     sidebarlist,
+    searchProperties
   },
   data() {
     return {
@@ -145,7 +137,7 @@ export default {
   },
   ready() {
     const sidebar = $('#sidebar').sidebar();
-    console.log(this);
+    // console.log(this);
   },
 };
 </script>

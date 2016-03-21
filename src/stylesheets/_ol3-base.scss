@@ -3,12 +3,12 @@ $sidebar-border-width: 3px !default;
 $sidebar-border-radius: 4px !default;
 $sidebar-border: $sidebar-border-width solid transparent !default;
 
-$tab-fg: #fff !default;
-$tabs-bg: $primary-color !default;
-$tab-hover-fg: $primary-color-text !default;
-$tab-hover-bg: $primary-color-light !default;
-$tab-active-fg: $primary-color-text !default;
-$tab-active-bg: $primary-color !default;
+$tab-fg: $color-primary-contrast !default;
+$tabs-bg: $color-primary !default;
+$tab-hover-fg: $color-accent !default;
+$tab-hover-bg: $color-accent-contrast!default;
+$tab-active-fg: $color-primary-contrast !default;
+$tab-active-bg: $color-primary !default;
 
 $move-map-in-xs: false !default;
 
