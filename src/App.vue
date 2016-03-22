@@ -8,6 +8,7 @@
 <script>
 import sidebar from './components/sidebar';
 import map from './components/map';
+
 export default {
   components: {
     sidebar,

@@ -11,6 +11,7 @@ import utils from './javascripts/utils.js';
 // import $ from 'jquery';
 window.utils = utils;
 vmdl.registerAll(Vue);
+
 Vue.config.debug = true;
 /* eslint-disable no-new */
 new Vue({

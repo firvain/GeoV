@@ -7,12 +7,22 @@
     </div>
     <!-- Tab panes -->
     <div class="sidebar-content">
-      <div class="sidebar-pane" id="profile">
+      <div class="sidebar-pane" id="account">
+        <h1 class="sidebar-header">Account
+          <span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></span>
+        </h1>
+      </div>
+      <div class="sidebar-pane" id="search">
         <h1 class="sidebar-header">
-          profile
+          Search
           <span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></span>
         </h1>
         <search-properties></search-properties>
+      </div>
+      <div class="sidebar-pane" id="messages">
+        <h1 class="sidebar-header">Messages
+          <span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></span>
+        </h1>
       </div>
       <div class="sidebar-pane" id="settings">
         <h1 class="sidebar-header">Settings
@@ -39,6 +49,7 @@
 import $ from 'jquery';
 import sidebarlist from './sidebarlist';
 import searchProperties from './search-properties';
+console.log(searchProperties.components); //eslint-disable-line
 $.fn.sidebar = function(options) {
     var $sidebar = this;
     var $tabs = $sidebar.find('ul.sidebar-tabs, .sidebar-tabs > ul');
@@ -120,9 +131,9 @@ export default {
   data() {
     return {
       tasks: [
-      { href: 'profile', iconame: 'view_headline', disabled: false, header: 'Profile' },
-      { href: 'home', iconame: 'account_box', disabled: false, header: 'Home' },
-      { href: 'messages', iconame: 'mail_outline', disabled: true, header: 'Messages' },
+      { href: 'account', iconame: 'account_box', disabled: false, header: 'Account' },
+      { href: 'search', iconame: 'search', disabled: false, header: 'Search' },
+      { href: 'messages', iconame: 'mail_outline', disabled: false, header: 'Messages' },
       ],
    }
   },
