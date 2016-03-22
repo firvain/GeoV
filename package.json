@@ -20,7 +20,8 @@
     "lodash": "^4.6.1",
     "openlayers": "^3.14.2",
     "vue": "^1.0.17",
-    "vue-mdl": "^0.4.0"
+    "vue-mdl": "^0.4.0",
+    "vue-router": "^0.7.11"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
