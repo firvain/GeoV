@@ -8,12 +8,12 @@
       <div class="mdl-cell mdl-cell--12-col search__cell search__cell--row">
           <mdl-checkbox class="mdl-js-ripple-effect search__checkbox" :checked.sync="areaCheck">Choose Area of Search</mdl-checkbox>
       </div>
-      <div v-show="y" class="mdl-cell mdl-cell--12-col search__cell search__cell--col">
+      <div class="mdl-cell mdl-cell--12-col search__cell search__cell--col">
           <mdl-checkbox class="mdl-js-ripple-effect search__filters" :checked.sync="filterCheck" value="parking">Parking</mdl-checkbox>
-          <mdl-checkbox class="mdl-js-ripple-effect search__filters" :checked.sync="filterCheck" value="furnished">Furnished</mdl-checkbox>
+          <mdl-checkbox v-show="y" class="mdl-js-ripple-effect search__filters" :checked.sync="filterCheck" value="furnished">Furnished</mdl-checkbox>
           <mdl-checkbox class="mdl-js-ripple-effect search__filters" :checked.sync="filterCheck" value="newly">Newly Build</mdl-checkbox>
           <mdl-checkbox class="mdl-js-ripple-effect search__filters" :checked.sync="filterCheck" value="heating">Heating</mdl-checkbox>
-          <mdl-checkbox class="mdl-js-ripple-effect search__filters" :checked.sync="filterCheck" value="cooling">Cooling</mdl-checkbox>
+          <mdl-checkbox v-show="y" class="mdl-js-ripple-effect search__filters" :checked.sync="filterCheck" value="cooling">Cooling</mdl-checkbox>
       </div>
       <div class="mdl-cell mdl-cell--12-col search__cell">
         <mdl-button v-mdl-ripple-effect id="search" class="search_button" @click.stop.prevent accent>search</mdl-button>
@@ -31,12 +31,34 @@ export default {
       estateTypeCheck: ['rent'],
       areaCheck: false,
       filterCheck: [],
-      y: false,
+      y: true,
     };
   },
   ready() {
+     /*eslint-disable*/
+    // $vm.$children.find(function(fruit,e,i){console.log(fruit.$el.querySelectorAll('input[type=radio]')[0].value)})
+    /*eslint-enable*/
+    const radios = document.querySelectorAll('.search__radio');
+    const self = this;
     console.log(this.$data.y) //eslint-disable-line
-    // console.log(this.$refs) //eslint-disable-line
+      /*eslint-disable*/
+    function changeHandler(event) {
+      let val = this.querySelectorAll('input')[0].value;
+      switch (val){
+        case 'rent':
+          console.log('rent')
+          self.$data.y = true;
+          break;
+        case 'sale':
+          console.log('sale')
+          self.$data.y = false;
+          break;
+      }
+    }
+    /*eslint-enable*/
+    Array.prototype.forEach.call(radios, (radio) => {
+      radio.addEventListener('change', changeHandler);
+    });
   },
 };
 </script>
