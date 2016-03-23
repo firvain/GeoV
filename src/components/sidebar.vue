@@ -11,6 +11,7 @@
         <h1 class="sidebar-header">Account
           <span class="sidebar-close"><i class="material-icons">keyboard_arrow_left</i></span>
         </h1>
+        <div>Account leme</div>
       </div>
       <div class="sidebar-pane" id="search">
         <h1 class="sidebar-header">
@@ -49,7 +50,6 @@
 import $ from 'jquery';
 import sidebarlist from './sidebarlist';
 import searchProperties from './search-properties';
-console.log(searchProperties.components); //eslint-disable-line
 $.fn.sidebar = function(options) {
     var $sidebar = this;
     var $tabs = $sidebar.find('ul.sidebar-tabs, .sidebar-tabs > ul');

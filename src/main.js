@@ -12,6 +12,7 @@ import utils from './javascripts/utils.js';
 window.utils = utils;
 vmdl.registerAll(Vue);
 
+
 Vue.config.debug = true;
 /* eslint-disable no-new */
 new Vue({
@@ -20,6 +21,7 @@ new Vue({
     App,
   },
 });
+
 // expose ol to global
 // require("expose?ol!openlayers/dist/ol.js");
 // require("expose?mitsos!./javascripts/map.js");

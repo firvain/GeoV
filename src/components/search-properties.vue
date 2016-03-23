@@ -2,8 +2,8 @@
   <form id="search" name="search" class="search">
     <div class="mdl-grid search__grid">
       <div class="mdl-cell mdl-cell--12-col search__cell search__cell-row">
-        <mdl-radio name="estate-type" class="search__radio" id="estate-type-rent" :checked.sync="estateTypeCheck" value="rent">Rent</mdl-radio>
-        <mdl-radio name="estate-type" id="estate-type-sale" class="search__radio" :checked.sync="estateTypeCheck" value="sale">Sale</mdl-radio>
+        <mdl-radio name="estate-type" class="search__radio" v-el:estate-type-rent :checked.sync="estateTypeCheck" value="rent">Rent</mdl-radio>
+        <mdl-radio name="estate-type" v-el:estate-type-sale class="search__radio" :checked.sync="estateTypeCheck" value="sale">Sale</mdl-radio>
       </div>
       <div class="mdl-cell mdl-cell--12-col search__cell search__cell--row">
           <mdl-checkbox class="mdl-js-ripple-effect search__checkbox" :checked.sync="areaCheck">Choose Area of Search</mdl-checkbox>
@@ -35,30 +35,26 @@ export default {
     };
   },
   ready() {
-     /*eslint-disable*/
-    // $vm.$children.find(function(fruit,e,i){console.log(fruit.$el.querySelectorAll('input[type=radio]')[0].value)})
-    /*eslint-enable*/
     const radios = document.querySelectorAll('.search__radio');
-    const self = this;
-    console.log(this.$data.y) //eslint-disable-line
-      /*eslint-disable*/
-    function changeHandler(event) {
-      let val = this.querySelectorAll('input')[0].value;
-      switch (val){
-        case 'rent':
-          console.log('rent')
-          self.$data.y = true;
-          break;
-        case 'sale':
-          console.log('sale')
-          self.$data.y = false;
-          break;
+    /*eslint-disable*/
+    const changeHandler = (event) => {
+        let val = event.target.value;
+        switch (val) {
+          case 'rent':
+            this.$data.y = true;
+            break;
+          case 'sale':
+            this.$data.y = false;
+            break;
+        }
       }
+
+    for (const value of radios) {
+      value.querySelectorAll('input')[0].addEventListener('change', changeHandler);
     }
-    /*eslint-enable*/
-    Array.prototype.forEach.call(radios, (radio) => {
-      radio.addEventListener('change', changeHandler);
-    });
+    // Array.prototype.forEach.call(radios, (radio) => {
+    //   radio.addEventListener('change', changeHandler);
+    // });
   },
 };
 </script>
