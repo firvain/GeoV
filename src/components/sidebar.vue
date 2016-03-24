@@ -137,15 +137,6 @@ export default {
       ],
    }
   },
-  methods: {
-    close: function (className) {
-      let el = this.$el;
-      if (el.classList)
-        el.classList.add(className);
-      else
-        el.className += ' ' + className;
-    }
-  },
   ready() {
     const sidebar = $('#sidebar').sidebar();
     // console.log(this);

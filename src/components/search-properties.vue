@@ -15,6 +15,7 @@
           <mdl-checkbox class="mdl-js-ripple-effect search__filters" :checked.sync="filterCheck" value="heating">Heating</mdl-checkbox>
           <mdl-checkbox v-show="y" class="mdl-js-ripple-effect search__filters" :checked.sync="filterCheck" value="cooling">Cooling</mdl-checkbox>
       </div>
+      <selectbox :list="options" ></selectbox>
       <div class="mdl-cell mdl-cell--12-col search__cell">
         <mdl-button v-mdl-ripple-effect id="search" class="search_button" @click.stop.prevent accent>search</mdl-button>
         <mdl-button v-mdl-ripple-effect id="cancel" class="search_button" @click.stop.prevent>cancel</mdl-button>
@@ -25,13 +26,22 @@
 
 
 <script>
+import selectbox from './selectbox.vue';
 export default {
+  components: {
+    selectbox,
+  },
   data() {
     return {
       estateTypeCheck: ['rent'],
       areaCheck: false,
       filterCheck: [],
       y: true,
+      options: [{ text: '', value: '' },
+        { text: 'Store', value: 'Store', selected: false },
+        { text: 'Apartment', value: 'Apartment', selected: true },
+        { text: 'Detached House', value: 'Detached_House', selected: false },
+      ],
     };
   },
   ready() {
