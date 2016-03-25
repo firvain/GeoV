@@ -3,6 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 var projectRoot = path.resolve(__dirname, '../');
 var cssLoaders = require('./css-loaders');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: {
     app: './src/main.js',
@@ -10,7 +11,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../dist/static'),
-    publicPath: '/static/',
+    publicPath: './static/',
     filename: '[name].js',
   },
   resolve: {
@@ -79,10 +80,7 @@ module.exports = {
     ],
   },
    vue: {
-    loaders: cssLoaders({
-       sourceMap: false,
-       extract: false
-     }),
+    loaders: cssLoaders(),
     // configure autoprefixer
     autoprefixer: {
       browsers: ['last 4 versions']
@@ -94,7 +92,11 @@ module.exports = {
     //   jQuery: 'jquery',
     //   'window.jQuery': 'jquery',
     // })
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")],
+    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
+    // new CopyWebpackPlugin([
+    //       { from: 'node_modules/material-design-lite/src/images', to: 'images/mdl' }
+    //     ]),
+    ],
 
   eslint: {
     formatter: require('eslint-friendly-formatter'),

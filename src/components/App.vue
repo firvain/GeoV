@@ -2,7 +2,6 @@
   <div id="app">
     <sidebar></sidebar>
     <map></map>
-    <router-view></router-view>
   </div>
 </template>
 
