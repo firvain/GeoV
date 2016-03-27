@@ -1,26 +1,26 @@
-/* eslint-disable */
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+/*eslint-disable*/
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = function (options) {
-  // generate loader string to be used with extract text plugin
   options = options || {}
-  function generateLoaders(loaders) {
+  // generate loader string to be used with extract text plugin
+  function generateLoaders (loaders) {
     var sourceLoader = loaders.map(function (loader) {
-      var extraParamChar;
+      var extraParamChar
       if (/\?/.test(loader)) {
-        loader = loader.replace(/\?/, '-loader?');
-        extraParamChar = '&';
+        loader = loader.replace(/\?/, '-loader?')
+        extraParamChar = '&'
       } else {
-        loader = loader + '-loader';
-        extraParamChar = '?';
+        loader = loader + '-loader'
+        extraParamChar = '?'
       }
-      return loader + (options.sourceMap ? extraParamChar + 'sourceMap' : '');
-    }).join('!');
+      return loader + (options.sourceMap ? extraParamChar + 'sourceMap' : '')
+    }).join('!')
 
     if (options.extract) {
-      return ExtractTextPlugin.extract('vue-style-loader', sourceLoader);
+      return ExtractTextPlugin.extract('vue-style-loader', sourceLoader)
     } else {
-      return ['vue-style-loader', sourceLoader].join('!');
+      return ['vue-style-loader', sourceLoader].join('!')
     }
   }
 
@@ -31,6 +31,6 @@ module.exports = function (options) {
     sass: generateLoaders(['css', 'sass?indentedSyntax']),
     scss: generateLoaders(['css', 'sass']),
     stylus: generateLoaders(['css', 'stylus']),
-    styl: generateLoaders(['css', 'stylus']),
-  };
-};
+    styl: generateLoaders(['css', 'stylus'])
+  }
+}

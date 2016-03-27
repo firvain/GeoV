@@ -18,10 +18,11 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../stylesheets/app";
+@import '../stylesheets/abstracts/_variables.scss';
+
 #app {
 
-  font-family: 'Roboto', sans-serif;
+
   height: 100%;
 
 }

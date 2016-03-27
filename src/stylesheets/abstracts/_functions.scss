@@ -28,3 +28,7 @@
 @function font($path, $base: $base-url) {
   @return asset($base, 'fonts/', $path);
 }
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}

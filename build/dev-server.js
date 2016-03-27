@@ -2,6 +2,7 @@
 var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.dev.conf');
+var proxyMiddleware = require('http-proxy-middleware');
 
 var app = express();
 var compiler = webpack(config);
@@ -24,7 +25,14 @@ compiler.plugin('compilation', function (compilation) {
     cb();
   });
 });
-
+// proxy api requests
+// Object.keys(proxyTable).forEach(function (context) {
+//   var options = proxyTable[context]
+//   if (typeof options === 'string') {
+//     options = { target: options }
+//   }
+//   app.use(proxyMiddleware(context, options))
+// })
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')());
 // serve webpack bundle output
