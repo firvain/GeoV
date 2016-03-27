@@ -17,7 +17,7 @@
       </div>
       <mdl-select label="Country" id="contry-select" :value.sync="country" :options="countries"></mdl-select>
       <div class="mdl-cell mdl-cell--12-col search__cell">
-        <mdl-button v-mdl-ripple-effect id="search" class="search_button" @click.stop.prevent accent>search</mdl-button>
+        <mdl-button v-mdl-ripple-effect id="search" class="search_button" @click.stop.prevent accent raised>search</mdl-button>
         <mdl-button v-mdl-ripple-effect id="cancel" class="search_button" @click.stop.prevent>cancel</mdl-button>
       </div>
     </div>
@@ -57,7 +57,6 @@
     },
     ready() {
       const radios = document.querySelectorAll('.search__radio');
-      /*eslint-disable*/
       const changeHandler = (event) => {
         let val = event.target.value;
         switch (val) {
