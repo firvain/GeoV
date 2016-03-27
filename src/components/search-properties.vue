@@ -58,16 +58,13 @@
     ready() {
       const radios = document.querySelectorAll('.search__radio');
       const changeHandler = (event) => {
-        let val = event.target.value;
-        switch (val) {
-          case 'rent':
+        const val = event.target.value;
+        if (val === 'rent') {
           this.$data.y = true;
-          break;
-          case 'sale':
+        } else {
           this.$data.y = false;
-          break;
         }
-      }
+      };
 
       for (const value of radios) {
         value.querySelectorAll('input')[0].addEventListener('change', changeHandler);
@@ -75,7 +72,7 @@
     // Array.prototype.forEach.call(radios, (radio) => {
     //   radio.addEventListener('change', changeHandler);
     // });
-  },
+    },
 };
 </script>
 
