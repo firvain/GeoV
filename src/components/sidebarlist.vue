@@ -15,3 +15,9 @@
     },
   };
 </script>
+<style lang='scss'>
+  .material-icons {
+
+    vertical-align: middle;
+  }
+</style>

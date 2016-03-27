@@ -4,32 +4,40 @@ import 'material-design-lite/material';
 
 import vmdl from 'vue-mdl';
 import App from './components/App';
+// import account from './components/account';
+// import search from './components/search';
+// import messages from './components/messages';
+// import settings from './components/settings';
 import utils from './javascripts/utils.js';
 // import VueRouter from 'vue-router';
 // import VueResource from 'vue-resource';
 Vue.config.debug = true;
 // Vue.use(VueResource);
-// Vue.use(VueRouter);
-// export const router = new VueRouter();
+// Vue.use(VueRouter({ //eslint-disable-line
+//   hashbang: false,
+// }));
+// export const router = new VueRouter({
+//   hashbang: false,
+// });
 // import $ from 'jquery';
 window.utils = utils;
 vmdl.registerAll(Vue);
 // router.map({
-//   '/home': {
-//     component: Home,
+//   account: {
+//     component: account,
 //   },
-//   secretquote: {
-//     component: SecretQuote,
+//   search: {
+//     component: search,
 //   },
-//   '/login': {
-//     component: Login,
+//   messsages: {
+//     component: messages,
 //   },
-//   '/signup': {
-//     component: Signup,
+//   settings: {
+//     component: settings,
 //   },
 // });
 // router.redirect({
-//   '*': '/App'
+//   '*': '/App',
 // });
 /* eslint-disable no-new */
 new Vue({
@@ -38,7 +46,7 @@ new Vue({
     App,
   },
 });
-
+// router.start(App, '#app');
 // expose ol to global
 // require("expose?ol!openlayers/dist/ol.js");
 // require("expose?mitsos!./javascripts/map.js");
