@@ -1,16 +1,36 @@
 <template>
-  <div id="sidebar" class="sidebar collapsed">
+<div id="wrapper">
     <!-- Nav tabs -->
-    <div class="sidebar-tabs">
-      <sidebarlist :list="tasks"></sidebarlist>
-      <sidebarlist :list="[{ href: 'settings', iconame: 'settings', disabled: false, header: 'Settings' }]"></sidebarlist>
+    <div class="sidebar-tabs collapsed">
+      <ul role="tablist">
+        <li>
+          <a v-link="'account'" role="tab"><i class="material-icons">account_box</i></a>
+        </li>
+        <li>
+          <a v-link="'search'" role="tab"><i class="material-icons">search</i></a>
+        </li>
+        <li>
+          <a v-link="'messages'" role="tab"><i class="material-icons">mail_outline</i></a>
+        </li>
+        <!-- {{ $data | json }} -->
+      </ul>
+      <ul role="tablist">
+        <li>
+          <a v-link="'settings'" role="tab"><i class="material-icons">settings</i></a>
+        </li>
+      </ul>
+      <!-- <sidebarlist :list="tasks"></sidebarlist> -->
+      <!-- <sidebarlist :list="[{ href: 'settings', iconame: 'settings', disabled: false, header: 'Settings' }]"></sidebarlist> -->
     </div>
     <!-- <router-view></router-view> -->
     <!-- Tab panes -->
-    <sidebar-content></sidebar-content>
+    <div class="sidebar-content" id="sidebarcontent">
+      <router-view></router-view>
+      <!-- <slot><p>asdsadasd</p></slot> -->
+    </div>
+</div>
+    <!-- <sidebar-content></sidebar-content> -->
 </template>
-
-
 <script >
 /* eslint-disable*/
 /**
@@ -24,34 +44,25 @@
  * @returns {jQuery}
  */
 import $ from 'jquery';
-import sidebarlist from './sidebarlist';
-import sidebarContent from './sidebar-content'
-// import searchProperties from './search-properties';
 $.fn.sidebar = function(options) {
     var $sidebar = this;
     var $tabs = $sidebar.find('ul.sidebar-tabs, .sidebar-tabs > ul');
     var $container = $sidebar.children('.sidebar-content').first();
-
     options = $.extend({
         position: 'left'
     }, options || {});
-
     $sidebar.addClass('sidebar-' + options.position);
-
     $tabs.children('li').children('a').on('click', function(e) {
         e.preventDefault();
         var $tab = $(this).closest('li');
-
         if ($tab.hasClass('active'))
             $sidebar.close();
         else if (!$tab.hasClass('disabled'))
-            $sidebar.open(this.hash.slice(1), $tab);
+            $sidebar.open(this.hash.slice(2), $tab);
     });
-
     $sidebar.find('.sidebar-close').on('click', function() {
         $sidebar.close();
     });
-
     /**
      * Open sidebar (if necessary) and show the specified tab.
      *
@@ -61,69 +72,53 @@ $.fn.sidebar = function(options) {
     $sidebar.open = function(id, $tab) {
         if (typeof $tab === 'undefined')
             $tab = $tabs.find('li > a[href="#' + id + '"]').parent();
-
         // hide old active contents
         $container.children('.sidebar-pane.active').removeClass('active');
-
         // show new content
         $container.children('#' + id).addClass('active');
-
         // remove old active highlights
         $tabs.children('li.active').removeClass('active');
-
         // set new highlight
         $tab.addClass('active');
-
         $sidebar.trigger('content', { 'id': id });
-
         if ($sidebar.hasClass('collapsed')) {
             // open sidebar
             $sidebar.trigger('opening');
             $sidebar.removeClass('collapsed');
         }
     };
-
     /**
      * Close the sidebar (if necessary).
      */
     $sidebar.close = function() {
         // remove old active highlights
         $tabs.children('li.active').removeClass('active');
-
         if (!$sidebar.hasClass('collapsed')) {
             // close sidebar
             $sidebar.trigger('closing');
             $sidebar.addClass('collapsed');
         }
     };
-
     return $sidebar;
 };
-
 export default {
-  components: {
-    sidebarlist,
-    sidebarContent
-  },
   data() {
-    return {
-      tasks: [
-      { href: 'account', iconame: 'account_box', disabled: false, header: 'Account' },
-      { href: 'search', iconame: 'search', disabled: false, header: 'Search' },
-      { href: 'messages', iconame: 'mail_outline', disabled: false, header: 'Messages' },
-      ],
-   }
+    return {};
   },
   ready() {
     const sidebar = $('#sidebar').sidebar();
-    // console.log(this);
+    // console.log(this.$el);
+    // const a = this.$el.querySelector('.sidebar-content');
+    // const b = a.querySelector('.sidebar-header');
+    // console.log(b);
   },
 };
 </script>
 <style lang='scss'>
   .material-icons {
-
     vertical-align: middle;
   }
 </style>
+
+
 

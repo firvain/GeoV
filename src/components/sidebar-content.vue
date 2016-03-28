@@ -1,16 +1,15 @@
 <template>
-  <div class="sidebar-content">
+  <div class="sidebar-content" id="sidebarcontent">
     <account></account>
     <search></search>
-    <messages><messages>
+    <messages></messages>
     <settings></settings>
   </div>
 </template>
 <script>
-  import account from './account';
-  import search from './search';
-  import messages from './messages';
-  import settings from './settings';
+  import Vue from 'vue';
+  import VueRouter from 'vue-router';
+
   export default {
     components: {
       account,
@@ -22,6 +21,7 @@
       return {};
     },
     ready() {
+
     },
   };
 </script>

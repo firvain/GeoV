@@ -7,17 +7,6 @@
 </template>
 
 <script>
-export default {
-  components: {
-  },
-  data() {
-    return {
-    };
-  },
-  ready() {
-    console.log(this); //eslint-disable-line
-  },
-};
 </script>
 
 

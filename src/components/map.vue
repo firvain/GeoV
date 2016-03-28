@@ -22,6 +22,7 @@ const myMap = new ol.Map({
  }),
 });
 export default {
+  name: 'map',
   data() {
     return {};
   },

@@ -7,17 +7,4 @@
 </template>
 
 
-<script>
-export default {
-  components: {
-  },
-  data() {
-    return {
-    };
-  },
-  ready() {
-  },
-};
-</script>
-
 

@@ -1,7 +1,7 @@
 <template>
 <ul role="tablist">
   <li v-for="task in list" :class="{ 'disabled' : task.disabled }">
-    <a href="#{{ task.href }}" role="tab"><i class="material-icons">{{ task.iconame }}</i></a>
+    <a v-link="{ path: '/{{ task.href }}'}" role="tab"><i class="material-icons">{{ task.iconame }}</i></a>
   </li>
   <!-- {{ $data | json }} -->
 </ul>
