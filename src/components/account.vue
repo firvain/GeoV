@@ -6,5 +6,9 @@
     <div>Account leme</div>
   </div>
 </template>
+
 <script>
+export default {
+  name: 'account',
+};
 </script>

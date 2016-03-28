@@ -15,7 +15,7 @@ const utils = {
       el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
     }
   },
-  addClass: function removeClass (el, className) {
+  addClass: function addClass (el, className) {
     if (el.classList)
       el.classList.add(className);
     else
@@ -24,7 +24,30 @@ const utils = {
 };
 export default utils;
 'use strict';
+export function hasClass(element, className) {
+  if (element.classList) {
+   return element.classList.contains(className);
+ } else {
+   new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+ }
+}
 
+export function removeClass(element, className) {
+    if (element.classList) {
+      element.classList.remove(className);
+    }
+    else {
+      element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    }
+  }
+
+
+export function addClass (element, className) {
+    if (element.classList)
+      element.classList.add(className);
+    else
+      element.className += ' ' + className;
+  }
 /**
  * Get element by CSS selector
  * Alias for (element||document).querySelector

@@ -1,22 +1,22 @@
 <template>
-<div id="wrapper">
+<div id="sidebar" class="sidebar sidebar-left collapsed">
     <!-- Nav tabs -->
     <div class="sidebar-tabs collapsed">
       <ul role="tablist">
-        <li>
-          <a v-link="'account'" role="tab"><i class="material-icons">account_box</i></a>
+        <li v-link-active>
+          <a v-link="{name: 'account', activeClass: 'active'}" role="tab"><i class="material-icons">account_box</i></a>
         </li>
-        <li>
-          <a v-link="'search'" role="tab"><i class="material-icons">search</i></a>
+        <li v-link-active>
+          <a v-link="{name: 'search', activeClass: 'active'}" role="tab"><i class="material-icons">search</i></a>
         </li>
-        <li>
-          <a v-link="'messages'" role="tab"><i class="material-icons">mail_outline</i></a>
+        <li v-link-active>
+          <a v-link="{name: 'messages', activeClass: 'active'}" role="tab"><i class="material-icons">mail_outline</i></a>
         </li>
         <!-- {{ $data | json }} -->
       </ul>
       <ul role="tablist">
-        <li>
-          <a v-link="'settings'" role="tab"><i class="material-icons">settings</i></a>
+        <li v-link-active>
+          <a v-link="{ name: 'settings', activeClass: 'active'}" role="tab"><i class="material-icons">settings</i></a>
         </li>
       </ul>
       <!-- <sidebarlist :list="tasks"></sidebarlist> -->
@@ -102,11 +102,12 @@ $.fn.sidebar = function(options) {
     return $sidebar;
 };
 export default {
+  name: 'sidebar',
   data() {
     return {};
   },
   ready() {
-    const sidebar = $('#sidebar').sidebar();
+    // const sidebar = $('#sidebar').sidebar();
     // console.log(this.$el);
     // const a = this.$el.querySelector('.sidebar-content');
     // const b = a.querySelector('.sidebar-header');
