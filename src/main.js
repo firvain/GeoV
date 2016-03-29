@@ -4,7 +4,6 @@ import 'material-design-lite/material';
 
 import vmdl from 'vue-mdl';
 import App from './components/App';
-// import sidebar from './components/sidebar';
 import map from './components/map';
 import account from './components/account';
 import search from './components/search';

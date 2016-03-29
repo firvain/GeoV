@@ -1,5 +1,5 @@
 <template>
-<div id="wrapper">
+<div id="app">
   <sidebar></sidebar>
   <map></map>
 </div>
