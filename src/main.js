@@ -11,7 +11,7 @@ import search from './components/search';
 import messages from './components/messages';
 import settings from './components/settings';
 import utils from './javascripts/utils.js';
-import { qs } from './javascripts/utils.js';
+import { qs, addClass, removeClass } from './javascripts/utils.js'; //eslint-disable-line
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 Vue.config.debug = true;
@@ -25,6 +25,7 @@ const router = new VueRouter({
   hashbang: false,
   // history: true;
 });
+export default router;
 router.map({
   '/account': {
     name: 'account',
@@ -44,7 +45,6 @@ router.map({
   },
   '/map': {
     name: 'map',
-    // Same for Baz, but only when /foo/baz is matched
     component: map,
   },
 });
@@ -58,29 +58,7 @@ router.map({
 // });
 /* eslint-disable */
 router.start(App, '#app');
-// router.beforeEach( function(transition) { //eslint-disable-line
 
-//     console.log("Called beforeEach any route transition starts"); //eslint-disable-line
-//     // console.log(transition); //eslint-disable-line
-//     const $sidebar = qs('#sidebar');
-//     removeClass($sidebar,'collapsed');
-//     const $sidebarPane = qs('.sidebar-pane');
-//     console.log($sidebarPane);
-//     // addClass($sidebarPane,'active');
-//     transition.next();
-
-// });
-router.afterEach( function(transition) { //eslint-disable-line
-
-    console.log("Called afterEach any route transition starts"); //eslint-disable-line
-    // console.log(transition); //eslint-disable-line
-
-    const $sidebarPane = qs('.sidebar-pane');
-    console.log($sidebarPane);
-    // addClass($sidebarPane,'active');
-
-
-});
 // expose ol to global
 // require("expose?ol!openlayers/dist/ol.js");
 // require("expose?mitsos!./javascripts/map.js");

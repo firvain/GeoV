@@ -1,6 +1,8 @@
 <template>
-<sidebar></sidebar>
-<map></map>
+<div id="wrapper">
+  <sidebar></sidebar>
+  <map></map>
+</div>
 <!--   <sidebar></sidebar>
   <map></map> -->
 </template>
