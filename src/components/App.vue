@@ -13,7 +13,7 @@
 // import VueRouter from 'vue-router';
 import sidebar from './sidebar';
 import map from './map';
-
+import { checkAuth } from '../javascripts/utils'
 // import { qs, hasClass, removeClass, addClass } from '../javascripts/utils';
 
 // Vue.nextTick(function () {
@@ -23,8 +23,6 @@ export default {
   components: {
     sidebar,
     map,
-  },
-  ready() {
   },
 };
 </script>

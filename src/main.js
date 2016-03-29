@@ -13,6 +13,7 @@ import utils from './javascripts/utils.js';
 import { qs, addClass, removeClass } from './javascripts/utils.js'; //eslint-disable-line
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+
 Vue.config.debug = true;
 Vue.use(VueResource);
 
@@ -57,6 +58,17 @@ router.map({
 // });
 /* eslint-disable */
 router.start(App, '#app');
+Vue.http.interceptors.push({
+  response: function (response) {
+    if(response.status === 401) {
+      this.logout();
+      this.authenticated = false;
+      router.go('/');
+    }
+    return response;
+  },
+});
+// console.log(config.auth0);
 
 // expose ol to global
 // require("expose?ol!openlayers/dist/ol.js");

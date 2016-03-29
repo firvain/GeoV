@@ -53,3 +53,7 @@ jspm_packages
 
 # sftp configuration file
 sftp-config.json
+
+### Sass ###
+.sass-cache/
+*.css.map

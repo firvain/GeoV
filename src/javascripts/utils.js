@@ -132,3 +132,11 @@ export function removeChilds(element, forceReflow = true) {
   }
   return element;
 }
+
+export function checkAuth() {
+  if(localStorage.getItem('id_token')) {
+    return true;
+  } else {
+    return false;
+  }
+};
