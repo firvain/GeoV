@@ -1,9 +1,8 @@
-<<<<<<< HEAD
-.DS_Store
-node_modules/
-dist/
-npm-debug.log
-=======
+### App ###
+# Release
+dist
+
+### Node ###
 # Logs
 logs
 *.log
@@ -29,15 +28,28 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directory
+# Dependency directories
 node_modules
+jspm_packages
 
 # Optional npm cache directory
 .npm
 
-# Sublime
-untitled.sublime-workspace
-
 # Optional REPL history
 .node_repl_history
->>>>>>> 0e172cab50c5368026dd51a2c7a4a28b23768f1b
+
+### SublimeText ###
+# cache files for sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# workspace files are user-specific
+*.sublime-workspace
+
+# project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using SublimeText
+# *.sublime-project
+
+# sftp configuration file
+sftp-config.json
