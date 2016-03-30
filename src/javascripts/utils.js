@@ -1,53 +1,45 @@
-/* eslint-disable */
-const utils = {
-  hasClass: function hasClass(el, className) {
-    if (el.classList) {
-      el.classList.contains(className);
-    } else {
-      new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
-    }
-  },
-  removeClass: function removeClass (el, className) {
-    if (el.classList) {
-      el.classList.remove(className);
-    }
-    else {
-      el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-    }
-  },
-  addClass: function addClass (el, className) {
-    if (el.classList)
-      el.classList.add(className);
-    else
-      el.className += ' ' + className;
-  }
-};
-export default utils;
 'use strict';
-export function hasClass(element, className) {
+
+/**
+ * check if element has class
+ * @param {[string]} className
+ * @param {[node]} element
+ * returns {[bolean]}
+ */
+export function hasClass(className, element = document) {
   if (element.classList) {
-   return element.classList.contains(className);
- } else {
-   new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
- }
+    return element.classList.contains(className);
+  }
+  return new RegExp(`(^| )${className}( |$)`, 'gi').test(element.className);
 }
 
-export function removeClass(element, className) {
-    if (element.classList) {
-      element.classList.remove(className);
-    }
-    else {
-      element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-    }
+/**
+ * remove Class to element
+ * @param {[string]} className
+ * @param {[node]} element
+ */
+export function removeClass(className, element = document) {
+  const el = element;
+  if (element.classList) {
+    element.classList.remove(className);
+  } else {
+    el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' '); // eslint-disable-line
   }
+}
 
-
-export function addClass (element, className) {
-    if (element.classList)
-      element.classList.add(className);
-    else
-      element.className += ' ' + className;
+/**
+ * add Class to element
+ * @param {[string]} className
+ * @param {[node]} element
+ */
+export function addClass(className, element = document) {
+  const el = element;
+  if (element.classList) {
+    element.classList.add(className);
+  } else {
+    el.className += ` ${className}`;
   }
+}
 /**
  * Get element by CSS selector
  * Alias for (element||document).querySelector
@@ -118,25 +110,22 @@ export function parent(element, tagName) {
  * @returns {*}
  */
 export function removeChilds(element, forceReflow = true) {
-
   // See: http://jsperf.com/empty-an-element/16
-  while (element.lastChild) {
-    element.removeChild(element.lastChild);
+  const el = element;
+  while (el.lastChild) {
+    el.removeChild(el.lastChild);
   }
-  if(forceReflow) {
+  if (forceReflow) {
     // See: http://jsperf.com/force-reflow
-    const d = element.style.display;
+    const d = el.style.display;
 
-    element.style.display = 'none';
-    element.style.display = d;
+    el.style.display = 'none';
+    el.style.display = d;
   }
-  return element;
+  return el;
 }
 
-export function checkAuth() {
-  if(localStorage.getItem('id_token')) {
-    return true;
-  } else {
-    return false;
-  }
-};
+window.removeChilds = removeChilds;
+window.addClass = addClass;
+window.removeClass = removeClass;
+window.hasClass = hasClass;

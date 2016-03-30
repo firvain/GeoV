@@ -8,23 +8,23 @@
 </template>
 
 <script>
-import { qs, addClass, removeClass, checkAuth } from '../javascripts/utils.js'; //eslint-disable-line
+import { qs, addClass, removeClass } from '../javascripts/utils.js'; //eslint-disable-line
+import { checkAuth } from '../javascripts/auth0.js';
 export default {
   name: 'account',
   route: {
     canActivate() {
-      console.log(checkAuth()); //eslint-disable-line
       return checkAuth();
     },
     activate({ next }) {
-      removeClass(qs('#sidebar'), 'collapsed');
-      addClass(this.$el, 'active');
+      removeClass('collapsed', qs('#sidebar'));
+      addClass('active', this.$el);
       next();
     },
   },
   methods: {
     close: function close() {
-      addClass(qs('.sidebar'), 'collapsed');
+      addClass('collapsed', qs('#sidebar'));
       this.$route.router.go({ path: '/' });
     },
   },

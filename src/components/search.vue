@@ -20,14 +20,14 @@ export default {
   name: 'search',
   route: {
     activate({ next }) {
-      removeClass(qs('#sidebar'), 'collapsed');
-      addClass(this.$el, 'active');
+      removeClass('collapsed', qs('#sidebar'));
+      addClass('active', this.$el);
       next();
     },
   },
   methods: {
     close: function close() {
-      addClass(qs('.sidebar'), 'collapsed');
+      addClass('collapsed', qs('#sidebar'));
       this.$route.router.go({ path: '/' });
     },
   },

@@ -24,35 +24,37 @@
 </template>
 <script>
 import config from '../../server/config/config.js';
-import { checkAuth } from '../javascripts/utils.js'; //eslint-disable-line
+import { checkAuth } from '../javascripts/auth0.js'; //eslint-disable-line
 export default {
   components: {},
   methods: {
     login() {
       const self = this;
       const lock = new Auth0Lock(config.auth0.AUTH0_CLIENT_ID, config.auth0.AUTH0_DOMAIN); //eslint-disable-line
-      lock.show((err, profile, token) => {
+      const options = {
+        connections: ['Username-Password-Authentication'],
+      };
+      lock.show(options, (err, profile, token) => {
         if (err) {
            // Handle the error
           console.log(err); //eslint-disable-line
         } else {
          // Set the token and user profile in local storage
           localStorage.setItem('profile', JSON.stringify(profile));
-          localStorage.setItem('id_token', token);
+          localStorage.setItem('idToken', token);
           self.authenticated = true;
         }
       });
     },
     logout() {
-      const self = this;
      // To log out, we just need to remove the token and profile
      // from local storage
-      localStorage.removeItem('id_token');
+      localStorage.removeItem('idToken');
       localStorage.removeItem('profile');
-      self.authenticated = false;
+      this.authenticated = false;
     },
     getSecretThing() {
-      const jwtHeader = { Authorization: 'Bearer ' + localStorage.getItem('id_token') }; // eslint-disable-line
+      const jwtHeader = { Authorization: 'Bearer ' + localStorage.getItem('idToken') }; // eslint-disable-line
       this.$http.get('http://127.0.0.1:8080/secured/ping', (data) => {
         console.log(data); //eslint-disable-line
         this.secretThing = data.text;

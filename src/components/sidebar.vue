@@ -12,7 +12,6 @@
     <!-- <sidebar-content></sidebar-content> -->
 </template>
 <script >
-import { qs, addClass, removeClass } from '../javascripts/utils.js'; //eslint-disable-line
 import sidebarList from './sidebar-list';
 import sidebarContent from './sidebar-content';
 /* eslint-disable*/
