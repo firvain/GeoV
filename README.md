@@ -7,11 +7,7 @@ GeoV Vue.js Project
 * [Material Design Lite] - Material Design Lite lets you add a Material Design look and feel to your websites
 * [node.js] - evented I/O for the backend
 * [Express] - fast node.js network app framework
-* [Sublime Text Editor] - The text editor you'll fall in love with
 * [Material Design Lite] - Material Design Lite lets you add a Material Design look and feel to your websites
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework
->>>>>>> 0e172cab50c5368026dd51a2c7a4a28b23768f1b
 * [Webpack] - webpack is a module bundler
 * [Vue.js] - Reactive Components for Modern Web Interfaces
 * [jQuery] - jQuery is a fast, small, and feature-rich JavaScript library
@@ -45,12 +41,10 @@ MIT
    [dill]: <https://github.com/joemccann/dillinger>
    [git-repo-url]: <https://github.com/firvain/GeoV.git>
    [TerraCognita]: <http://terracognita.gr>
-   [@thomasfuchs]: <http://twitter.com/thomasfuchs>
    [Material Design Lite]: <https://www.getmdl.io/>
    [Sublime Text Editor]: <https://www.sublimetext.com/>
    [node.js]: <http://nodejs.org>
    [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
    [express]: <http://expressjs.com>
    [vue.js]: <http://vuejs.org/>
    [Webpack]: <https://webpack.github.io/>
