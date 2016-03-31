@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env DEBUG=* node ./bin/www",
+    "dev": "cross-env DEBUG=* nodemon ./bin/www",
     "prod": "cross-env NODE_ENV=production DEBUG=* node ./bin/www"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "cross-env": "^1.0.7"
+    "cross-env": "^1.0.7",
+    "nodemon": "^1.9.1"
   }
 }

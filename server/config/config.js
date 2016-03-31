@@ -23,7 +23,7 @@ module.exports = {
       database: 'GeoV',
       password: 'TR81VH83YH1WrSqjeblH',
       port: 5432,
-      host: '188.226.158.168',
+      host: '127.0.0.1',
       ssl: false,
       application_name: 'GeoV',
       fallback_application_name: 'GeoV',

@@ -1,6 +1,7 @@
 'use strict';
 const config = require('../config/config');
 const express = require('express');
+const debug = require('debug')('server:server');
 const pg = require('pg');
 const router = express.Router();
 const environment = process.env.NODE_ENV || 'development';
@@ -21,12 +22,12 @@ const rollback = (client, done) => {
 
 // console.log(config);
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+router.get('/users', function (req, res, next) {
   pg.connect(configConnection, function (err, client, done) {
     if (err) {
-      console.log('Could not connect to postgres');
+      debug('Could not connect to postgres');
     } else {
-      console.log('Connected');
+      debug('Connected to GeoV');
       const query = client.query('SELECT * from public.users', function (error, result) {
         // console.log(this.text);
         if (result) {
