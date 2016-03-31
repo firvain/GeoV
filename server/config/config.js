@@ -1,4 +1,6 @@
-module.exports = {
+'use strict';
+const environment = process.env.NODE_ENV || 'development';
+const config = {
   development: {
     connection: {
       user: 'etsipis',
@@ -37,3 +39,8 @@ module.exports = {
   },
 
 };
+if (environment === 'production') {
+  module.exports = config.production;
+} else {
+  module.exports = config.development;
+}

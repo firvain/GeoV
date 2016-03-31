@@ -1,48 +1,13 @@
 'use strict';
-const config = require('../config/config');
+
 const express = require('express');
-const debug = require('debug')('server:server');
-const pg = require('pg');
 const router = express.Router();
-const environment = process.env.NODE_ENV || 'development';
-let configConnection;
-if (environment === 'production') {
-  configConnection = config.production.connection;
-} else {
-  configConnection = config.development.connection;
-}
-const rollback = (client, done) => {
-  // if there was a problem rolling back the query
-  // something is seriously messed up.  Return the error
-  // to the done function to close & remove this client from
-  // the pool.  If you leave a client in the pool with an unaborted
-  // transaction weird, hard to diagnose problems might happen.
-  client.query('ROLLBACK', (error) => done(error));
-};
+const pg = require('pg');
+pg.defaults.poolSize = 25;
 
 // console.log(config);
 /* GET users listing. */
-router.get('/users', function (req, res, next) {
-  pg.connect(configConnection, function (err, client, done) {
-    if (err) {
-      debug('Could not connect to postgres');
-    } else {
-      debug('Connected to GeoV');
-      const query = client.query('SELECT * from public.users', function (error, result) {
-        // console.log(this.text);
-        if (result) {
-          const json = JSON.stringify(result.rows);
-          res.writeHead(200, {
-            'content-type': 'application/json',
-            'content-length': Buffer.byteLength(json),
-          });
-          res.end(json);
-        } else {
-          throw error;
-        }
-        done();
-      });
-    }
-  });
-});
+const users = require('./models/users');
+
+router.use('/', users);
 module.exports = router;
