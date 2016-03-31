@@ -6,7 +6,7 @@ var proxyMiddleware = require('http-proxy-middleware');
 
 var app = express();
 var compiler = webpack(config);
-
+const port = process.env.PORT || 8080
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
   stats: {
@@ -43,10 +43,10 @@ app.use(hotMiddleware);
 // serve pure static assets
 app.use('/static', express.static('./static'));
 
-module.exports = app.listen(8080, function (err) {
+module.exports = app.listen(port, function (err) {
   if (err) {
     console.log(err);
     return;
   }
-  console.log('Listening at http://localhost:8080\n')
+   console.log('Listening at http://localhost:' + port + '\n')
 });
