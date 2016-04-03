@@ -1,7 +1,9 @@
 'use strict';
 const config = require('../../config/config');
 const express = require('express');
-const debug = require('debug')('server:server');
+// const debug = require('debug')('server:server');
+const logger = require('../../utils/logger');
+
 const pg = require('pg');
 const router = express.Router();
 const _ = require('lodash');
@@ -21,10 +23,10 @@ router.route('/users')
 .get((req, res, next) => {
   pg.connect(config.connection, (err, client, done) => {
     if (err) {
-      debug('Could not connect to postgres');
+      logger.error('Could not connect to postgres');
     } else {
-      debug('Connected to GeoV');
-      const query = client.query('SELECT * from public.users', (error, result) => {
+      logger.debug('Connected to GeoV');
+      client.query('SELECT * from public.users', (error, result) => {
         done();
         if (result) {
           const json = JSON.stringify(result.rows);
@@ -57,9 +59,9 @@ router.route('/users')
 
   pg.connect(config.connection, (err, client, done) => {
     if (err) {
-      debug('Could not connect to postgres');
+      logger.error('Could not connect to postgres');
     } else {
-      debug('Connected to GeoV');
+      logger.debug('Connected to GeoV');
       const columns = `(first_name,last_name,phone_number,fax_number,email,
       street_name,street_number,ps_code,city,country,is_active)`;
       const values = `('${firstName}','${lastName}','${phoneNumber}','${faxNumber}','${email}',
@@ -88,9 +90,9 @@ router.route('/users/:user_id')
   const id = req.params.user_id;
   pg.connect(config.connection, (err, client, done) => {
     if (err) {
-      debug('Could not connect to postgres');
+      logger.debug('Could not connect to postgres');
     } else {
-      debug('Connected to GeoV');
+      logger.debug('Connected to GeoV');
       const text = 'SELECT * FROM public.users WHERE id= $1';
       client.query(text, [id], (error, result) => {
         done();
@@ -112,12 +114,12 @@ router.route('/users/:user_id')
   const id = req.params.user_id;
   pg.connect(config.connection, (err, client, done) => {
     if (err) {
-      debug(err);
+      logger.error(err);
       throw err;
     }
     client.query('BEGIN', (err) => {
       if (err) {
-        debug(err);
+        logger.error(err);
         return rollback(client, done);
       }
       // as long as we do not call the `done` callback we can do
@@ -130,7 +132,7 @@ router.route('/users/:user_id')
       process.nextTick(() => {
         const text = 'DELETE FROM public.users WHERE id= $1';
         client.query(text, [id], (err) => {
-          debug(err);
+          logger.error(err);
           if (err) return rollback(client, done);
           client.query('COMMIT', done);
           res.status(200).send('Successfully deleted');
