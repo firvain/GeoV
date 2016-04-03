@@ -6,30 +6,52 @@
 <script>
 /* eslint-disable */
 // import ol from 'openlayers/dist/ol.js';
-import createMap from '../javascripts/map.js';
+// import createMap from '../javascripts/map.js';
+const ol = require('openlayers');
+const myMap = new ol.Map({
+ layers: [
+ new ol.layer.Tile({
+   source: new ol.source.MapQuest({
+     layer: 'sat',
+   }),
+ }),
+ ],
+ view: new ol.View({
+   center: ol.proj.fromLonLat([37.41, 8.82]),
+   zoom: 4,
+ }),
+});
 export default {
+  name: 'map',
   data() {
     return {};
   },
+  methods: {
+    setMapTarget() {
+      myMap.setTarget(this.$el);
+    }
+  },
   ready() {
-    // console.log(this);
-    // mitsos.setTarget(this.$el);
-   createMap(this.$el);
-   // return {};
+    this.setMapTarget();
   },
 };
 
 
 </script>
 <style lang="scss">
-@import '../stylesheets/variables';
+@import '../stylesheets/abstracts/_variables.scss';
   .map {
 
   height: 100%;
 }
 .ol-control {
   button {
-    background-color: $accent-color;
+    background-color: $color-primary !important;
+    &:hover {
+    background-color: $color-primary-contrast !important;
+    color: $color-accent;
+
+    }
   }
 }
 </style>

@@ -1,16 +1,16 @@
 /* eslint-disable */
 var path = require('path');
-var webpack = require('webpack');
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 var projectRoot = path.resolve(__dirname, '../');
 var cssLoaders = require('./css-loaders');
 module.exports = {
   entry: {
-    app: './src/main.js',
+    app: ['./src/stylesheets/main.scss','./src/main.js'],
     vendor: ['jquery','openlayers'],
   },
   output: {
     path: path.resolve(__dirname, '../dist/static'),
-    publicPath: '/static/',
+    publicPath: './static/',
     filename: '[name].js',
   },
   resolve: {
@@ -52,6 +52,14 @@ module.exports = {
         loader: 'babel',
         exclude: /node_modules/,
       },
+      // {
+      //   test: /\.css$/,
+      //   loader: 'vue-style!css'
+      // },
+      {
+        test: /\.scss$/,
+        loaders: ['vue-style', 'css', 'sass']
+      },
       {
         test: /\.json$/,
         loader: 'json',
@@ -61,7 +69,7 @@ module.exports = {
         loader: 'vue-html',
       },
       {
-        test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?v=.*)?$/,
+        test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
         loader: 'url',
         query: {
           limit: 10000,
@@ -71,23 +79,15 @@ module.exports = {
     ],
   },
    vue: {
-    loaders: cssLoaders({
-       sourceMap: false,
-       extract: false
-     }),
+    loaders: cssLoaders(),
     // configure autoprefixer
     autoprefixer: {
       browsers: ['last 4 versions']
     }
   },
   plugins: [
-    // new webpack.ProvidePlugin({
-    //   $: 'jquery',
-    //   jQuery: 'jquery',
-    //   'window.jQuery': 'jquery',
-    // })
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")],
-
+    new CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
+  ],
   eslint: {
     formatter: require('eslint-friendly-formatter'),
   },
