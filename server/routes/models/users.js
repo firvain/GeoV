@@ -4,6 +4,7 @@ const express = require('express');
 const debug = require('debug')('server:server');
 const pg = require('pg');
 const router = express.Router();
+const _ = require('lodash');
 
 const rollback = (client, done) => {
   client.query('ROLLBACK', (error) => done(error)
@@ -38,19 +39,33 @@ router.route('/users')
       });
     }
   });
-});
+})
+.post((req, res, next) => {
+  // console.log(_.trimEnd(text, ', '));
+  // console.log(typeof req.body.first_name);
+  const firstName = _.lowerCase(req.body.first_name) || '';
+  const lastName = _.lowerCase(req.body.last_name) || '';
+  const phoneNumber = _.lowerCase(req.body.phone_number) || '';
+  const faxNumber = _.lowerCase(req.body.fax_number) || '';
+  const email = _.lowerCase(req.body.email) || '';
+  const streetName = _.lowerCase(req.body.street_name) || '';
+  const streetNumber = _.lowerCase(req.body.street_number) || '';
+  const psCode = _.lowerCase(req.body.ps_code) || '';
+  const city = _.lowerCase(req.body.city) || '';
+  const country = _.lowerCase(req.body.country) || '';
+  const isActive = (req.body.is_active) || true;
 
-
-router.route('/users/:user_id')
-.get((req, res, next) => {
-  const id = req.params.user_id;
   pg.connect(config.connection, (err, client, done) => {
     if (err) {
       debug('Could not connect to postgres');
     } else {
       debug('Connected to GeoV');
-      const text = 'SELECT * FROM public.users WHERE id= $1';
-      client.query(text, [id], (error, result) => {
+      const columns = `(first_name,last_name,phone_number,fax_number,email,
+      street_name,street_number,ps_code,city,country,is_active)`;
+      const values = `('${firstName}','${lastName}','${phoneNumber}','${faxNumber}','${email}',
+      '${streetName}','${streetNumber}','${psCode}','${city}','${country}',${isActive})`;
+      const text = `INSERT INTO public.users ${columns} VALUES ${values}`;
+      client.query(text, (error, result) => {
         done();
         if (result) {
           const json = JSON.stringify(result.rows);
@@ -65,29 +80,18 @@ router.route('/users/:user_id')
       });
     }
   });
-})
-.post((req, res, next) => {
-  debug(req.body);
+});
+
+
+router.route('/users/:user_id')
+.get((req, res, next) => {
   const id = req.params.user_id;
-  const firstName = req.body.first_name;
-  const lastName = req.body.last_name;
-  const phoneNumber = req.body.phone_number;
-  const faxNumber = req.body.fax_number;
-  const email = req.body.email;
-  const streetName = req.body.street_name;
-  const streetNumber = req.body.street_number;
-  const psCode = req.body.ps_code;
-  const city = req.body.city;
-  const country = req.body.country;
-  const isActive = req.body.is_active;
   pg.connect(config.connection, (err, client, done) => {
     if (err) {
       debug('Could not connect to postgres');
     } else {
       debug('Connected to GeoV');
-      const columns = `(first_name,last_name,phone_number,fax_number,email,street_name,street_number,ps_code,city,country,is_active)`;
-      const values = `(${firstName},${lastName},${phoneNumber},${faxNumber},${email},${streetName},${streetNumber},${psCode},${city},${country},${isActive})`;
-      const text = `INSERT INTO public.users ${columns} VALUES ${values}`;
+      const text = 'SELECT * FROM public.users WHERE id= $1';
       client.query(text, [id], (error, result) => {
         done();
         if (result) {
@@ -136,4 +140,19 @@ router.route('/users/:user_id')
   });
 });
 
+
+// router.route('/users/:user_id/:property_id')
+// .get((req, res, next) => {
+//   const user_id = req.params.user_id;
+//   const property_id = req.params.property_id;
+//   res.send(`id ${user_id} --- property_id ${property_id}`);
+// });
+// router.param('user_id', function (req, res, next, user_id) {
+//   console.log('CALLED ONLY ONCE at user_id '+ user_id);
+//   next();
+// });
+// router.param('property_id', function (req, res, next, property_id) {
+//   console.log('CALLED ONLY ONCE at property_id '+ property_id);
+//   next();
+// });
 module.exports = router;
