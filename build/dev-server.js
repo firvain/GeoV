@@ -2,10 +2,11 @@
 var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.dev.conf');
+var proxyMiddleware = require('http-proxy-middleware');
 
 var app = express();
 var compiler = webpack(config);
-
+const port = process.env.PORT || 8080
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
   stats: {
@@ -24,7 +25,14 @@ compiler.plugin('compilation', function (compilation) {
     cb();
   });
 });
-
+// proxy api requests
+// Object.keys(proxyTable).forEach(function (context) {
+//   var options = proxyTable[context]
+//   if (typeof options === 'string') {
+//     options = { target: options }
+//   }
+//   app.use(proxyMiddleware(context, options))
+// })
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')());
 // serve webpack bundle output
@@ -35,10 +43,10 @@ app.use(hotMiddleware);
 // serve pure static assets
 app.use('/static', express.static('./static'));
 
-module.exports = app.listen(8080, function (err) {
+module.exports = app.listen(port, function (err) {
   if (err) {
     console.log(err);
     return;
   }
-  console.log('Listening at http://localhost:8080');
+   console.log('Listening at http://localhost:' + port + '\n')
 });

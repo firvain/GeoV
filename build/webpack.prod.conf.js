@@ -11,9 +11,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var SOURCE_MAP = true;
 
 module.exports = merge(baseConfig, {
-  stats: {
-    children: false
-  },
   devtool: SOURCE_MAP ? '#source-map' : false,
   output: {
     // naming output files with hashes for better caching.

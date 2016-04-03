@@ -16,5 +16,4 @@ function createMap(el) {
   });
   return myMap;
 }
-
 export default createMap;
