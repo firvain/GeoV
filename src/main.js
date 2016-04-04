@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 import 'material-design-lite/material';
 
-import vmdl from 'vue-mdl';
+import VueMdl from 'vue-mdl';
 import App from './components/App';
 
 /* import map from './components/map';
@@ -18,8 +18,10 @@ import VueResource from 'vue-resource';
 Vue.config.debug = true;
 Vue.use(VueResource);
 
-vmdl.registerAll(Vue);
+Vue.use(VueMdl);
+
 Vue.use(VueRouter);
+
 const router = new VueRouter({
   hashbang: false,
   // history: true;
