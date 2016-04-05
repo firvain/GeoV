@@ -28,13 +28,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../stylesheets/abstracts/_variables.scss';
 
 #app {
-
-
   height: 100%;
-
 }
 
 </style>

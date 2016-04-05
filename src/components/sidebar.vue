@@ -12,6 +12,7 @@
     <!-- <sidebar-content></sidebar-content> -->
 </template>
 <script >
+
 import sidebarList from './sidebar-list';
 import sidebarContent from './sidebar-content';
 /* eslint-disable*/
@@ -30,6 +31,11 @@ export default {
 };
 </script>
 <style lang='scss'>
+@import './node_modules/material-design-lite/src/_variables.scss';
+@import '../stylesheets/vendor/ol3-sidebar';
+  .sidebar {
+   font-family: $preferred_font;
+  }
   .material-icons {
     vertical-align: middle;
   }

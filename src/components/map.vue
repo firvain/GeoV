@@ -5,9 +5,9 @@
 
 <script>
 /* eslint-disable */
-// import ol from 'openlayers/dist/ol.js';
+import ol from 'openlayers';
 // import createMap from '../javascripts/map.js';
-const ol = require('openlayers');
+// const ol = require('openlayers');
 const myMap = new ol.Map({
  layers: [
  new ol.layer.Tile({
@@ -39,17 +39,18 @@ export default {
 
 </script>
 <style lang="scss">
-@import '../stylesheets/abstracts/_variables.scss';
-  .map {
+@import './node_modules/openlayers/css/ol';
+@import './node_modules/material-design-lite/src/_variables.scss';
 
+.map {
   height: 100%;
 }
 .ol-control {
   button {
-    background-color: $color-primary !important;
+    background-color: unquote("rgb(#{$color-primary})");
     &:hover {
-    background-color: $color-primary-contrast !important;
-    color: $color-accent;
+    background-color: unquote("rgb(#{$color-primary-contrast})");
+    color: unquote("rgb(#{$color-accent})");
 
     }
   }

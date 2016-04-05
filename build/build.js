@@ -11,6 +11,7 @@ spinner.start();
 rm('-rf', 'dist');
 mkdir('dist');
 cp('-R', 'static', conf.output.path);
+cp('-R', 'src/assets/images', 'dist');
 
 webpack(conf, function (err, stats) {
   spinner.stop();

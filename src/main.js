@@ -1,9 +1,13 @@
 import Vue from 'vue';
 
-import 'material-design-lite/material';
+import 'material-design-lite/material.js';
+import './stylesheets/main.scss';
+import 'material-design-lite/src/material-design-lite.scss';
+import App from './components/App';
+// import 'material-design-lite';
+
 
 import VueMdl from 'vue-mdl';
-import App from './components/App';
 
 /* import map from './components/map';
 import account from './components/account';

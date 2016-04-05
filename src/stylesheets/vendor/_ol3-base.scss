@@ -1,14 +1,14 @@
-$sidebar-bg: $color-primary-dark !default;
+$sidebar-bg: unquote("rgb(#{$color-primary})") !default;
 $sidebar-border-width: 3px !default;
 $sidebar-border-radius: 4px !default;
 $sidebar-border: $sidebar-border-width solid transparent !default;
 
-$tab-fg: $color-primary-contrast !default;
-$tabs-bg: $color-primary !default;
-$tab-hover-fg: $color-accent !default;
-$tab-hover-bg: $color-accent-contrast!default;
-$tab-active-fg: $color-primary-contrast !default;
-$tab-active-bg: $color-primary !default;
+$tab-fg:  unquote("rgb(#{$color-primary-contrast})") !default;
+$tabs-bg:  unquote("rgb(#{$color-primary})") !default;
+$tab-hover-fg:  unquote("rgb(#{$color-accent})") !default;
+$tab-hover-bg: unquote("rgb(#{$color-primary-contrast})") !default;
+$tab-active-fg: unquote("rgb(#{$color-primary-contrast})") !default;
+$tab-active-bg: unquote("rgb(#{$color-primary})") !default;
 
 $move-map-in-xs: false !default;
 

@@ -5,7 +5,7 @@ var projectRoot = path.resolve(__dirname, '../');
 var cssLoaders = require('./css-loaders');
 module.exports = {
   entry: {
-    app: ['./src/stylesheets/main.scss','./src/main.js'],
+    app: ['./src/main.js'],
     vendor: ['jquery','openlayers'],
   },
   output: {
