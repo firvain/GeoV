@@ -33,6 +33,7 @@ export default {
       const lock = new Auth0Lock(config.auth0.AUTH0_CLIENT_ID, config.auth0.AUTH0_DOMAIN); //eslint-disable-line
       const options = {
         connections: ['Username-Password-Authentication'],
+        gravatar: false,
       };
       lock.show(options, (err, profile, token) => {
         if (err) {
