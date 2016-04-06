@@ -19,7 +19,8 @@ var webpackConfig = merge(baseConfig, {
 })
 
 // no need for app entry during tests
-delete webpackConfig.entry
+delete webpackConfig.entry;
+webpackConfig.module.preLoaders = webpackConfig.module.preLoaders || [];
 
 // make sure isparta loader is applied before eslint
 webpackConfig.module.preLoaders.unshift({
@@ -44,22 +45,22 @@ module.exports = function (config) {
     //    http://karma-runner.github.io/0.13/config/browsers.html
     // 2. add it to the `browsers` array below.
     browsers: ['PhantomJS'],
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage'],
     files: ['./index.js'],
     preprocessors: {
-      './index.js': ['webpack', 'sourcemap']
+      './index.js': ['webpack', 'sourcemap'],
     },
     webpack: webpackConfig,
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
     },
     coverageReporter: {
       dir: './coverage',
       reporters: [
         { type: 'lcov', subdir: '.' },
-        { type: 'text-summary' }
-      ]
-    }
-  })
-}
+        { type: 'text-summary' },
+      ],
+    },
+  });
+};

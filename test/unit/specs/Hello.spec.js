@@ -9,7 +9,7 @@ describe('Hello.vue', () => {
         Hello,
       },
     }).$mount();
-    expect(vm.$el.querySelector('.hello h1').textContent).toBe('Hello World!');
+    expect(vm.$el.querySelector('.hello h1').textContent).to.contain('Hello World!');
   });
 });
 

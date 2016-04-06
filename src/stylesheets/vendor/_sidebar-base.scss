@@ -136,7 +136,7 @@ $move-map-in-xs: true !default;
 
       & > a {
         display: block;
-        width: 34px;
+        width: $tab-size;
         height: 100%;
         line-height: $tab-size;
         color: inherit;

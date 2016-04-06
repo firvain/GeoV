@@ -1,5 +1,5 @@
 <template>
-<div id="sidebar" class="sidebar sidebar-left collapsed">
+<div id="sidebar" class="sidebar sidebar-left mdl-shadow--16dp collapsed">
     <!-- Nav tabs -->
 
     <sidebar-list></sidebar-list>
@@ -32,6 +32,7 @@ export default {
 </script>
 <style lang='scss'>
 @import './node_modules/material-design-lite/src/_variables.scss';
+/* @import './node_modules/material-design-lite/src/__shadow.scss'; */
 @import '../stylesheets/vendor/ol3-sidebar';
   .sidebar {
    font-family: $preferred_font;

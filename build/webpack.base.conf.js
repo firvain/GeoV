@@ -1,16 +1,17 @@
 /* eslint-disable */
-var path = require('path');
-var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
-var projectRoot = path.resolve(__dirname, '../');
-var cssLoaders = require('./css-loaders');
+const path = require('path');
+const config = require('../config');
+const CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
+const projectRoot = path.resolve(__dirname, '../');
+const cssLoaders = require('./css-loaders');
 module.exports = {
   entry: {
-    app: ['./src/main.js'],
+    app: './src/main.js',
     vendor: ['jquery','openlayers'],
   },
   output: {
-    path: path.resolve(__dirname, '../dist/static'),
-    publicPath: './static/',
+    path: config.build.assetsRoot,
+    publicPath: config.build.assetsPublicPath,
     filename: '[name].js',
   },
   resolve: {
@@ -69,11 +70,11 @@ module.exports = {
         loader: 'vue-html',
       },
       {
-        test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url',
         query: {
           limit: 10000,
-          name: '[name].[ext]?[hash:7]',
+          name: path.join(config.build.assetsSubDirectory, '[name].[ext]?[hash:7]'),
         },
       },
     ],
