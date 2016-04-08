@@ -1,9 +1,8 @@
 <template>
 <div id="app">
-  <!-- <p>{{ messages | json }}</p> -->
   <sidebar></sidebar>
   <map></map>
-  <mdl-snackbar display-on="colorChanged"></mdl-snackbar>
+  <mdl-snackbar display-on="showSnackbar"></mdl-snackbar>
   <div>
 
   </div>
@@ -31,15 +30,12 @@ export default {
   },
   data() {
     return {
-      // messages: '',
+      messages: '',
     };
   },
   events: {
-    'colorChanged'(msg) {
-      console.log('asdad = ' + msg.message);
-      // `this` in event callbacks are automatically bound
-      // to the instance that registered it
-      // this.messages = msg.message;
+    'showSnackbar'(msg) {
+      this.$broadcast('showSnackbar', msg);
     }
   },
 };
@@ -50,5 +46,13 @@ export default {
 #app {
   height: 100%;
 }
-
+.test {
+  height: 50px;
+  width: 200px;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100000000;
+}
 </style>

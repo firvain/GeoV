@@ -14,15 +14,11 @@
         <a href="#" @click.stop.prevent='login()'  ><i class="material-icons">lock_outline</i></a>
       </li>
       <li>
-        <a href="#" @click.stop.prevent='getSecretThing()'  ><i class="material-icons">lock_outline</i></a>
+        <a href="#" @click.stop.prevent='getSecretThing'  ><i class="material-icons">lock_outline</i></a>
       </li>
       <li>
-        <a href="#" @click.stop.prevent='get2()'  ><i class="material-icons">lock_outline</i></a>
+        <a href="#" @click.stop.prevent='getdata'  ><i class="material-icons">lock_outline</i></a>
       </li>
-    <!--   <li>
-        <a href="#" @click.stop.prevent='notify'  ><i class="material-icons">lock_outline</i></a>
-      </li> -->
-      <!-- {{ $data | json }} -->
     </ul>
     <ul role="tablist">
       <li v-link-active>
@@ -73,7 +69,7 @@ export default {
       })
       .catch((err) => console.log(err)); //eslint-disable-line
     },
-    get2() {
+    getdata() {
       const jwtHeader = { Authorization: 'Bearer ' + localStorage.getItem('idToken') }; // eslint-disable-line
 
       this.$http({
@@ -90,14 +86,15 @@ export default {
         response.headers('expires');
         // set data on vm
         console.log(response.data);
-        this.$dispatch('colorChanged', { message: 'Message Sent' });
       })
       .catch((ErrorCallback) => { //eslint-disable-line
-        alert(ErrorCallback.status);
+        console.log(this.$parent);
+        if (ErrorCallback.status === 401) {
+          this.$dispatch('showSnackbar', { message: 'Please Login First' });
+        } else {
+          this.$dispatch('showSnackbar', { message: 'An error occured!' });
+        }
       });
-    },
-    notify() {
-      this.$dispatch('colorChanged', { message: 'Message Sent' });
     },
   },
   data() {
