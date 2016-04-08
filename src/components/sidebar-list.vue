@@ -2,7 +2,7 @@
   <div class="sidebar-tabs collapsed">
     <ul role="tablist">
       <li v-link-active>
-        <a v-link="{name: 'account', activeClass: 'active'}" role="tab" ><i class="material-icons">account_box</i></a>
+        <a v-link="{name: 'account', activeClass: 'active'}" role="tab" @click='getUserData'><i class="material-icons">account_box</i></a>
       </li>
       <li v-link-active>
         <a v-link="{name: 'search', activeClass: 'active'}" role="tab"><i class="material-icons">search</i></a>
@@ -13,15 +13,9 @@
       <li>
         <a href="#" @click.stop.prevent='login()'  ><i class="material-icons">lock_outline</i></a>
       </li>
-      <li>
-        <a href="#" @click.stop.prevent='getSecretThing'  ><i class="material-icons">lock_outline</i></a>
-      </li>
-      <li>
-        <a href="#" @click.stop.prevent='getdata'  ><i class="material-icons">lock_outline</i></a>
-      </li>
-      <li>
-        <a href="#" @click='increment'  ><i class="material-icons">store</i></a>
-      </li>
+<!--       <li>
+        <a href="#" @click.stop.prevent='getUserData'  ><i class="material-icons">lock_outline</i></a>
+      </li> -->
     </ul>
     <ul role="tablist">
       <li v-link-active>
@@ -33,7 +27,7 @@
 <script>
 import config from '../../server/config/config.js';
 import { checkAuth } from '../javascripts/auth0.js'; //eslint-disable-line
-import { incrementCounter } from '../vuex/actions';
+import { showSnackbar } from '../vuex/actions';
 export default {
   components: {},
   methods: {
@@ -63,17 +57,7 @@ export default {
       localStorage.removeItem('profile');
       this.authenticated = false;
     },
-    getSecretThing() {
-      const jwtHeader = { Authorization: 'Bearer ' + localStorage.getItem('idToken') }; // eslint-disable-line
-      this.$http.get('http://127.0.0.1:3000/api/users', (data) => {
-        console.log(data); //eslint-disable-line
-        this.secretThing = data.text;
-      }, {
-        headers: jwtHeader,
-      })
-      .catch((err) => console.log(err)); //eslint-disable-line
-    },
-    getdata() {
+    getUserData() {
       const jwtHeader = { Authorization: 'Bearer ' + localStorage.getItem('idToken') }; // eslint-disable-line
       // console.log(this);
       this.$http({
@@ -90,20 +74,21 @@ export default {
         response.headers('expires');
         // set data on vm
         // console.log(response.data);
+        this.showSnackbar({ message: 'Data Loaded' });
       })
       .catch((ErrorCallback) => { //eslint-disable-line
         // this.increment;
         if (ErrorCallback.status === 401) {
-          this.$dispatch('showSnackbar', { message: 'Please Login First' });
+          this.showSnackbar({ message: 'Please Login First' });
         } else {
-          this.$dispatch('showSnackbar', { message: 'An error occured!' });
+          this.showSnackbar({ message: 'An Error Occured!' });
         }
       });
     },
   },
   vuex: {
     actions: {
-      increment: incrementCounter,
+      showSnackbar,
     },
   },
   data() {

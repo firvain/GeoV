@@ -1,16 +1,25 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
-import { INCREMENT } from './mutation-types';
+import { SHOWSNACKBAR, HIDESNACKBAR } from './mutation-types';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     count: 1,
+    snackbar: false,
+    snackbarMsg: '',
   },
   mutations: {
-    [INCREMENT](state) {
-      state.count += 1; // eslint-disable-line
+    // [INCREMENT](state) {
+    //   state.count += 1; // eslint-disable-line
+    // },
+    [SHOWSNACKBAR](state, msg) {
+      state.snackbar = true; // eslint-disable-line
+      state.snackbarMsg = msg; // eslint-disable-line
+    },
+    [HIDESNACKBAR](state) {
+      state.snackbar = false; // eslint-disable-line
     },
   },
 });
@@ -25,20 +34,5 @@ export default new Vuex.Store({
 //   });
 // }
 
-// export default store;
-// if (module.hot) {
-//   // accept actions and mutations as hot modules
-//   module.hot.accept(['./mutations', './modules/a'], () => {
-//     // require the updated modules
-//     // have to add .default here due to babel 6 module output
-//     const newMutations = require('./mutations').default;
-//     const newModuleA = require('./modules/a').default;
-//     // swap in the new actions and mutations
-//     store.hotUpdate({
-//       mutations: newMutations,
-//       modules: {
-//         a: newModuleA,
-//       },
-//     });
-//   });
-// };
+export default store;
+

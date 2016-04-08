@@ -1,47 +1,34 @@
 <template>
-<div id="app">
-   <div>
-    <h3>{{ msg }}</h3>
-  </div>
+<div :class="{hasSnackBar: msg === true}" id="app">
   <sidebar></sidebar>
   <map></map>
   <mdl-snackbar display-on="showSnackbar"></mdl-snackbar>
 </div>
-<!--   <sidebar></sidebar>
-  <map></map> -->
 </template>
 
 <script>
 import sidebar from './sidebar';
 import map from './map';
-// import Display from './Display';
 import store from '../vuex/store'; // import the store
-import getCount from '../vuex/getters';
+import { snack } from '../vuex/getters';
 export default {
   components: {
-    // Display,
     sidebar,
     map,
   },
   data() {
     return {
-      messages: '',
-      msg: 'adsad',
+      hasSnackBar: false,
     };
-  },
-  events: {
-    'showSnackbar'(msg) {
-      this.$broadcast('showSnackbar', msg);
-    },
   },
   store,
   vuex: {
-    getters: getCount,
+    getters: snack,
   },
   computed: {
     msg() {
-      // this.increment(3);
-      return `hello ${this.count}`;
+      this.$broadcast('showSnackbar', { message: this.snack.snackbarMsg.message });
+      return this.snack.snackbar;
     },
   },
 };
