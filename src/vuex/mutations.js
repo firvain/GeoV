@@ -1,8 +1,12 @@
-import { INCREMENT } from './mutation-types';
+import { SHOWSNACKBAR, HIDESNACKBAR } from './mutation-types';
+
 /* eslint-disable */
 export default {
-  [INCREMENT](state, amount) {
-    state.count++;
-    state.history.push('increment');
-  },
+    [SHOWSNACKBAR](state, obj) {
+      state.snackbar = true; // eslint-disable-line
+      state.snackbarMsg = obj.message; // eslint-disable-line
+    },
+    [HIDESNACKBAR](state) {
+      state.snackbar = false; // eslint-disable-line
+    },
 };

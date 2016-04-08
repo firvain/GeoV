@@ -6,5 +6,5 @@ export const showSnackbar = function showSnackbar({ dispatch }, msg) {
   dispatch(types.SHOWSNACKBAR, msg);
 };
 export const hideSnackbar = function hideSnackbar({ dispatch }) {
-  dispatch(types.SHOWSNACKBAR);
+  dispatch(types.HIDESNACKBAR);
 };

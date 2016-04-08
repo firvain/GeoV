@@ -13,9 +13,6 @@
       <li>
         <a href="#" @click.stop.prevent='login()'  ><i class="material-icons">lock_outline</i></a>
       </li>
-<!--       <li>
-        <a href="#" @click.stop.prevent='getUserData'  ><i class="material-icons">lock_outline</i></a>
-      </li> -->
     </ul>
     <ul role="tablist">
       <li v-link-active>
@@ -73,13 +70,14 @@ export default {
         // get 'expires' header
         response.headers('expires');
         // set data on vm
-        // console.log(response.data);
+        console.log(response.data);
         this.showSnackbar({ message: 'Data Loaded' });
       })
       .catch((ErrorCallback) => { //eslint-disable-line
-        // this.increment;
         if (ErrorCallback.status === 401) {
-          this.showSnackbar({ message: 'Please Login First' });
+          this.showSnackbar({
+            message: 'Please Login First',
+          });
         } else {
           this.showSnackbar({ message: 'An Error Occured!' });
         }

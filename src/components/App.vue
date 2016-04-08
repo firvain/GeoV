@@ -1,8 +1,8 @@
 <template>
-<div :class="{hasSnackBar: msg === true}" id="app">
+<div  :class="{'snackBarActive': handleSnackbar }" id="app">
   <sidebar></sidebar>
   <map></map>
-  <mdl-snackbar display-on="showSnackbar"></mdl-snackbar>
+  <mdl-snackbar display-on="A"></mdl-snackbar>
 </div>
 </template>
 
@@ -11,6 +11,8 @@ import sidebar from './sidebar';
 import map from './map';
 import store from '../vuex/store'; // import the store
 import { snack } from '../vuex/getters';
+import { hideSnackbar } from '../vuex/actions';
+
 export default {
   components: {
     sidebar,
@@ -18,17 +20,34 @@ export default {
   },
   data() {
     return {
-      hasSnackBar: false,
     };
+  },
+  ready() {
+
   },
   store,
   vuex: {
     getters: snack,
+    actions: {
+      hideSnackbar,
+    },
   },
   computed: {
-    msg() {
-      this.$broadcast('showSnackbar', { message: this.snack.snackbarMsg.message });
-      return this.snack.snackbar;
+    handleSnackbar() {
+      const handler = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.hideSnackbar();
+      };
+      if (!this.snack.snackbar) {
+        return 0;
+      }
+      this.$broadcast('A', {
+        message: this.snack.snackbarMsg,
+        actionHandler: handler,
+        actionText: 'ok',
+      });
+      return 1;
     },
   },
 };
@@ -38,14 +57,5 @@ export default {
 
 #app {
   height: 100%;
-}
-.test {
-  height: 50px;
-  width: 200px;
-  background-color: red;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 100000000;
 }
 </style>
