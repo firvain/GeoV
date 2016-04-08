@@ -25,7 +25,9 @@
     "vue": "^1.0.21",
     "vue-mdl": "^0.7.2",
     "vue-resource": "^0.7.0",
-    "vue-router": "^0.7.13"
+    "vue-router": "^0.7.13",
+    "vuex": "^0.6.2",
+    "vuex-router-sync": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.7.5",

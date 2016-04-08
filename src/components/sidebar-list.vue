@@ -19,6 +19,9 @@
       <li>
         <a href="#" @click.stop.prevent='getdata'  ><i class="material-icons">lock_outline</i></a>
       </li>
+      <li>
+        <a href="#" @click='increment'  ><i class="material-icons">store</i></a>
+      </li>
     </ul>
     <ul role="tablist">
       <li v-link-active>
@@ -30,6 +33,7 @@
 <script>
 import config from '../../server/config/config.js';
 import { checkAuth } from '../javascripts/auth0.js'; //eslint-disable-line
+import { incrementCounter } from '../vuex/actions';
 export default {
   components: {},
   methods: {
@@ -71,7 +75,7 @@ export default {
     },
     getdata() {
       const jwtHeader = { Authorization: 'Bearer ' + localStorage.getItem('idToken') }; // eslint-disable-line
-
+      // console.log(this);
       this.$http({
         url: 'http://127.0.0.1:3000/api/users',
         method: 'GET',
@@ -79,22 +83,27 @@ export default {
       })
       .then((response) => {
         // get status
-        console.log(response.status);
+        // console.log(response.status);
         // get all headers
         response.headers();
         // get 'expires' header
         response.headers('expires');
         // set data on vm
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((ErrorCallback) => { //eslint-disable-line
-        console.log(this.$parent);
+        // this.increment;
         if (ErrorCallback.status === 401) {
           this.$dispatch('showSnackbar', { message: 'Please Login First' });
         } else {
           this.$dispatch('showSnackbar', { message: 'An error occured!' });
         }
       });
+    },
+  },
+  vuex: {
+    actions: {
+      increment: incrementCounter,
     },
   },
   data() {
