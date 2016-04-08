@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "babel-runtime": "^5.8.0",
+    "bluebird": "^3.3.4",
     "jquery": "^2.2.3",
     "lodash": "^4.8.2",
     "openlayers": "^3.15.0",

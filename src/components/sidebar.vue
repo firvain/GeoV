@@ -5,6 +5,8 @@
     <sidebar-list></sidebar-list>
     <!-- Tab panes -->
     <sidebar-content></sidebar-content>
+    <mdl-snackbar display-on="colorChanged"></mdl-snackbar>
+    <!-- <p>{{ messages | json }}</p> -->
     <!-- <div class="sidebar-content" id="sidebarcontent">
       <router-view></router-view>
     </div> -->
@@ -24,8 +26,18 @@ export default {
     sidebarContent,
   },
   data() {
-    return {};
+    return {
+      // messages: '',
+    };
   },
+  // events: {
+  //   'child-msg'(msg) {
+
+  //     // `this` in event callbacks are automatically bound
+  //     // to the instance that registered it
+  //     this.messages = msg;
+  //   }
+  // },
   ready() {
   },
 };

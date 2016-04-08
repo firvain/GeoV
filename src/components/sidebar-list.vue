@@ -1,26 +1,35 @@
 <template>
-<div class="sidebar-tabs collapsed">
-  <ul role="tablist">
-    <li v-link-active>
-      <a v-link="{name: 'account', activeClass: 'active'}" role="tab" ><i class="material-icons">account_box</i></a>
-    </li>
-    <li v-link-active>
-      <a v-link="{name: 'search', activeClass: 'active'}" role="tab"><i class="material-icons">search</i></a>
-    </li>
-    <li v-link-active>
-      <a v-link="{name: 'messages', activeClass: 'active'}" role="tab"><i class="material-icons">mail_outline</i></a>
-    </li>
-    <li>
-      <a href="#" @click.stop.prevent='login()'  ><i class="material-icons">lock_outline</i></a>
-    </li>
-    <!-- {{ $data | json }} -->
-  </ul>
-  <ul role="tablist">
-    <li v-link-active>
-      <a v-link="{ name: 'settings', activeClass: 'active'}" role="tab"><i class="material-icons">settings</i></a>
-    </li>
-  </ul>
-</div>
+  <div class="sidebar-tabs collapsed">
+    <ul role="tablist">
+      <li v-link-active>
+        <a v-link="{name: 'account', activeClass: 'active'}" role="tab" ><i class="material-icons">account_box</i></a>
+      </li>
+      <li v-link-active>
+        <a v-link="{name: 'search', activeClass: 'active'}" role="tab"><i class="material-icons">search</i></a>
+      </li>
+      <li v-link-active>
+        <a v-link="{name: 'messages', activeClass: 'active'}" role="tab"><i class="material-icons">mail_outline</i></a>
+      </li>
+      <li>
+        <a href="#" @click.stop.prevent='login()'  ><i class="material-icons">lock_outline</i></a>
+      </li>
+      <li>
+        <a href="#" @click.stop.prevent='getSecretThing()'  ><i class="material-icons">lock_outline</i></a>
+      </li>
+      <li>
+        <a href="#" @click.stop.prevent='get2()'  ><i class="material-icons">lock_outline</i></a>
+      </li>
+    <!--   <li>
+        <a href="#" @click.stop.prevent='notify'  ><i class="material-icons">lock_outline</i></a>
+      </li> -->
+      <!-- {{ $data | json }} -->
+    </ul>
+    <ul role="tablist">
+      <li v-link-active>
+        <a v-link="{ name: 'settings', activeClass: 'active'}" role="tab"><i class="material-icons">settings</i></a>
+      </li>
+    </ul>
+  </div>
 </template>
 <script>
 import config from '../../server/config/config.js';
@@ -56,12 +65,39 @@ export default {
     },
     getSecretThing() {
       const jwtHeader = { Authorization: 'Bearer ' + localStorage.getItem('idToken') }; // eslint-disable-line
-      this.$http.get('http://127.0.0.1:8080/secured/ping', (data) => {
+      this.$http.get('http://127.0.0.1:3000/api/users', (data) => {
         console.log(data); //eslint-disable-line
         this.secretThing = data.text;
       }, {
         headers: jwtHeader,
-      }).error((err) => console.log(err)); //eslint-disable-line
+      })
+      .catch((err) => console.log(err)); //eslint-disable-line
+    },
+    get2() {
+      const jwtHeader = { Authorization: 'Bearer ' + localStorage.getItem('idToken') }; // eslint-disable-line
+
+      this.$http({
+        url: 'http://127.0.0.1:3000/api/users',
+        method: 'GET',
+        headers: jwtHeader,
+      })
+      .then((response) => {
+        // get status
+        console.log(response.status);
+        // get all headers
+        response.headers();
+        // get 'expires' header
+        response.headers('expires');
+        // set data on vm
+        console.log(response.data);
+        this.$dispatch('colorChanged', { message: 'Message Sent' });
+      })
+      .catch((ErrorCallback) => { //eslint-disable-line
+        alert(ErrorCallback.status);
+      });
+    },
+    notify() {
+      this.$dispatch('colorChanged', { message: 'Message Sent' });
     },
   },
   data() {
