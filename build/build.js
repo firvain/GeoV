@@ -1,20 +1,23 @@
 require('shelljs/global');
-env.NODE_ENV = 'production'
-
+env.NODE_ENV = 'production';
+const path = require('path');
+const config = require('../config');
 const ora = require('ora');
 const webpack = require('webpack');
-const conf = require('./webpack.prod.conf');
+const webpackConfig = require('./webpack.prod.conf');
 
 const spinner = ora('building for production...');
 spinner.start();
 
-rm('-rf', 'dist');
-mkdir('dist');
-cp('-R', 'static', conf.output.path);
+const assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory);
+rm('-rf', assetsPath);
+mkdir('-p',assetsPath);
+cp('-R', 'static/', assetsPath);
+// cp('-R', 'src/assets/images', 'dist');
 
-webpack(conf, function (err, stats) {
+webpack(webpackConfig, function (err, stats) {
   spinner.stop();
-  if (err) throw err
+  if (err) throw err;
   process.stdout.write(stats.toString({
     colors: true,
     modules: false,

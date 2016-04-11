@@ -124,8 +124,3 @@ export function removeChilds(element, forceReflow = true) {
   }
   return el;
 }
-
-window.removeChilds = removeChilds;
-window.addClass = addClass;
-window.removeClass = removeClass;
-window.hasClass = hasClass;

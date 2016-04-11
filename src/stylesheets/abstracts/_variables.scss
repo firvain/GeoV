@@ -71,15 +71,11 @@ $max-width: 1180px !default;
 // ///   $base-url: 'http://cdn.example.com/assets/';
 // $base-url: '/assets/' !default;
 
+$custom-purple: "224, 64, 251";
+$custom-purple-dark: "124, 77, 255";
+$custom-blue-grey: "96, 125, 139";
+$custom-blue-grey-dark: "69, 90, 100";
 
-/// Mdl Custom
-$color-black: rgb(0, 0, 0);
-$color-white: rgb(255, 255, 255);
-$color-primary: rgb(96, 125, 139);
-$color-primary-dark: rgb(69, 90, 100);
-$color-accent: rgb(124, 77, 255);
-$color-primary-contrast: $color-white !default;
-$color-accent-contrast: $color-white !default;
-$text-color-primary: rgba(0, 0, 0, 0.87) !default;
-$text-link-color: $color-accent !default;
-$divider-color: rgba(0, 0, 0, 0.12) !default;
+$color-primary: $custom-blue-grey;
+$color-primary-dark: $custom-blue-grey-dark;
+$color-accent: $custom-purple;

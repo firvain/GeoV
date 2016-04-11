@@ -5,7 +5,7 @@ const morganLogger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('./utils/logger');
-
+const cors = require('cors');
 const api = require('./routes/api');
 
 const app = express();
@@ -29,7 +29,7 @@ if (app.get('env') === 'production') {
     stream: logger.stream,
   }));
 }
-
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

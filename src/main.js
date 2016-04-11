@@ -1,9 +1,17 @@
 import Vue from 'vue';
 
-import 'material-design-lite/material';
+import 'material-design-lite';
+import './stylesheets/main.scss';
+// import 'material-design-lite/src/material-design-lite.scss';
+import App from './components/App';
+import { sync } from 'vuex-router-sync';
+import store from './vuex/store';
+// eslint-disable
+// import store from './vuex/store'; // import the store
+// import 'material-design-lite';
+
 
 import VueMdl from 'vue-mdl';
-import App from './components/App';
 
 /* import map from './components/map';
 import account from './components/account';
@@ -14,7 +22,6 @@ import settings from './components/settings';
 import { qs, addClass, removeClass } from './javascripts/utils.js'; //eslint-disable-line
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-
 Vue.config.debug = true;
 Vue.use(VueResource);
 
@@ -56,18 +63,12 @@ router.map({
   },
 });
 /* eslint-disable no-new */
-// new Vue({
-//   el: 'body',
-//   replace: false,
-//   components: {
-//     // App,
-//   },
-// });
-/* eslint-disable */
+
+sync(store, router);
 router.start(App, '#app');
 Vue.http.interceptors.push({
-  response: function (response) {
-    if(response.status === 401) {
+  response(response) {
+    if (response.status === 401) {
       this.logout();
       this.authenticated = false;
       router.go('/');
@@ -75,7 +76,6 @@ Vue.http.interceptors.push({
     return response;
   },
 });
-// console.log(config.auth0);
 
 // expose ol to global
 // require("expose?ol!openlayers/dist/ol.js");

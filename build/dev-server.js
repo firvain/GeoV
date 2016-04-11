@@ -1,14 +1,20 @@
 /* eslint-disable */
-var express = require('express');
-var webpack = require('webpack');
-var config = require('./webpack.dev.conf');
-var proxyMiddleware = require('http-proxy-middleware');
+var path = require('path')
+const express = require('express');
+const webpack = require('webpack');
+const config = require('../config');
+const webpackConfig = process.env.NODE_ENV === 'testing'
+ ? require('./webpack.prod.conf')
+ : require('./webpack.dev.conf');
+const proxyMiddleware = require('http-proxy-middleware');
 
+
+const port = process.env.PORT || config.dev.port;
+var proxyTable = config.dev.proxyTable;
 var app = express();
-var compiler = webpack(config);
-const port = process.env.PORT || 8080
-var devMiddleware = require('webpack-dev-middleware')(compiler, {
-  publicPath: config.output.publicPath,
+var compiler = webpack(webpackConfig);
+const devMiddleware = require('webpack-dev-middleware')(compiler, {
+  publicPath: webpackConfig.output.publicPath,
   stats: {
     colors: true,
     chunks: false,
@@ -26,13 +32,13 @@ compiler.plugin('compilation', function (compilation) {
   });
 });
 // proxy api requests
-// Object.keys(proxyTable).forEach(function (context) {
-//   var options = proxyTable[context]
-//   if (typeof options === 'string') {
-//     options = { target: options }
-//   }
-//   app.use(proxyMiddleware(context, options))
-// })
+Object.keys(proxyTable).forEach(function (context) {
+  var options = proxyTable[context]
+  if (typeof options === 'string') {
+    options = { target: options }
+  }
+  app.use(proxyMiddleware(context, options))
+})
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')());
 // serve webpack bundle output
@@ -41,7 +47,8 @@ app.use(devMiddleware);
 // compilation error display
 app.use(hotMiddleware);
 // serve pure static assets
-app.use('/static', express.static('./static'));
+const staticPath = path.join(config.build.assetsPublicPath, config.build.assetsSubDirectory)
+app.use(staticPath, express.static('./static'))
 
 module.exports = app.listen(port, function (err) {
   if (err) {

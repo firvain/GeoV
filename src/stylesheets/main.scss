@@ -1,39 +1,12 @@
 @charset 'UTF-8';
-
-// 1. Configuration and helpers
-@import
-  'abstracts/variables',
-  'abstracts/functions',
-  'abstracts/mixins';
-
-// 2. Vendors
-@import
-  'vendor/normalize',
-  'vendor/material',
-  // '../../node_modules/material-design-lite/material.css',
-  'vendor/ol',
-  'vendor/ol3-sidebar';
-
-// 3. Base stuff
-@import
-  'base/base',
-  'base/fonts',
-  'base/typography',
-  'base/helpers';
-
-// 4. Layout-related sections
-@import
-  'layout/header',
-  'layout/footer';
-
-// 5. Components
-@import
-  'components/button';
-
-// 6. Page-specific styles
-@import
-  'pages/index';
-
-// 7. Themes
-@import
-  'themes/default';
+$image_path: '../../node_modules/material-design-lite/src/images';
+@import 'vendor/normalize';
+@import 'abstracts/variables';
+@import 'base/base';
+@import 'base/helpers';
+@import 'base/typography';
+@import 'pages/index';
+@import "../../node_modules/material-design-lite/src/color-definitions";
+// $color-primary-contrast: $color-accent;
+// $color-accent-contrast: $color-primary;
+@import '../../node_modules/material-design-lite/src/material-design-lite';

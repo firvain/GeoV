@@ -12,13 +12,14 @@ $sidebar-transition: 500ms !default;
 
 $tab-size: 40px !default;
 $tab-font-size: 12pt !default;
+$tab-fg:  unquote("rgb(#{$color-primary-contrast})") !default;
 $tab-bg: null !default;
 $tab-transition: 80ms !default;
 
 $header-fg: $tab-fg !default;
 $header-bg: $tabs-bg !default;
 
-$content-bg: $color-primary-contrast !default;
+$content-bg: unquote("rgb(#{$color-primary-contrast})") !default;
 $content-padding-vertical: 10px !default;
 $content-padding-horizontal: 20px !default;
 
@@ -116,7 +117,7 @@ $move-map-in-xs: true !default;
       }
 
       &.disabled {
-        color: fade-out($tab-fg, 0.6);
+        // color: transparentize($tab-fg, 0.6);
 
         &:hover {
           @if $tab-bg {
@@ -135,7 +136,7 @@ $move-map-in-xs: true !default;
 
       & > a {
         display: block;
-        width: 34px;
+        width: $tab-size;
         height: 100%;
         line-height: $tab-size;
         color: inherit;
