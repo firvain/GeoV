@@ -28,6 +28,7 @@ export default {
 </script>
 <style lang='scss'>
 @import './node_modules/material-design-lite/src/_variables.scss';
+@import '../stylesheets/abstracts/variables';
 @import '../stylesheets/vendor/ol3-sidebar';
   .sidebar {
    font-family: $preferred_font;

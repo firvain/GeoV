@@ -13,7 +13,7 @@ pg.defaults.poolSize = 25;
 
 // console.log(config);
 /* GET users listing. */
-const users = require('./models/users');
+const users = require('./controllers/users');
 
 router.use('/', jwtCheck, users);
 module.exports = router;

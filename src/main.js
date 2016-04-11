@@ -1,8 +1,8 @@
 import Vue from 'vue';
 
-import 'material-design-lite/material.js';
+import 'material-design-lite';
 import './stylesheets/main.scss';
-import 'material-design-lite/src/material-design-lite.scss';
+// import 'material-design-lite/src/material-design-lite.scss';
 import App from './components/App';
 import { sync } from 'vuex-router-sync';
 import store from './vuex/store';

@@ -70,7 +70,7 @@ export default {
         // get 'expires' header
         response.headers('expires');
         // set data on vm
-        console.log(response.data);
+        // console.log(response.data);
         this.showSnackbar({ message: 'Data Loaded' });
       })
       .catch((ErrorCallback) => { //eslint-disable-line

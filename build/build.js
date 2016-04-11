@@ -13,7 +13,7 @@ const assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDire
 rm('-rf', assetsPath);
 mkdir('-p',assetsPath);
 cp('-R', 'static/', assetsPath);
-cp('-R', 'src/assets/images', 'dist');
+// cp('-R', 'src/assets/images', 'dist');
 
 webpack(webpackConfig, function (err, stats) {
   spinner.stop();
