@@ -39,13 +39,13 @@ module.exports = {
     // Proxy requests to different backend during development.
     // https://github.com/chimurai/http-proxy-middleware
     proxyTable: {
-      // '/api': {
-      //   target: 'http://jsonplaceholder.typicode.com',
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/api': ''
-      //   }
-      // }
+      '/api': {
+        target: 'http://127.0.0.1:3000',
+        changeOrigin: true,
+        pathRewrite: {
+          // '^/api': '',
+        },
+      },
     },
   },
 };
