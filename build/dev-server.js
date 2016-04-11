@@ -3,7 +3,9 @@ var path = require('path')
 const express = require('express');
 const webpack = require('webpack');
 const config = require('../config');
-const webpackConfig = require('./webpack.dev.conf')
+const webpackConfig = process.env.NODE_ENV === 'testing'
+ ? require('./webpack.prod.conf')
+ : require('./webpack.dev.conf');
 const proxyMiddleware = require('http-proxy-middleware');
 
 
@@ -30,13 +32,13 @@ compiler.plugin('compilation', function (compilation) {
   });
 });
 // proxy api requests
-// Object.keys(proxyTable).forEach(function (context) {
-//   var options = proxyTable[context]
-//   if (typeof options === 'string') {
-//     options = { target: options }
-//   }
-//   app.use(proxyMiddleware(context, options))
-// })
+Object.keys(proxyTable).forEach(function (context) {
+  var options = proxyTable[context]
+  if (typeof options === 'string') {
+    options = { target: options }
+  }
+  app.use(proxyMiddleware(context, options))
+})
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')());
 // serve webpack bundle output

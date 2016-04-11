@@ -5,11 +5,7 @@
     <sidebar-list></sidebar-list>
     <!-- Tab panes -->
     <sidebar-content></sidebar-content>
-    <!-- <div class="sidebar-content" id="sidebarcontent">
-      <router-view></router-view>
-    </div> -->
 </div>
-    <!-- <sidebar-content></sidebar-content> -->
 </template>
 <script >
 
@@ -32,7 +28,6 @@ export default {
 </script>
 <style lang='scss'>
 @import './node_modules/material-design-lite/src/_variables.scss';
-/* @import './node_modules/material-design-lite/src/__shadow.scss'; */
 @import '../stylesheets/vendor/ol3-sidebar';
   .sidebar {
    font-family: $preferred_font;
