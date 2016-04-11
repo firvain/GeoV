@@ -3,7 +3,9 @@ var path = require('path')
 const express = require('express');
 const webpack = require('webpack');
 const config = require('../config');
-const webpackConfig = require('./webpack.dev.conf')
+const webpackConfig = process.env.NODE_ENV === 'testing'
+ ? require('./webpack.prod.conf')
+ : require('./webpack.dev.conf');
 const proxyMiddleware = require('http-proxy-middleware');
 
 
