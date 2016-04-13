@@ -9,6 +9,7 @@
   "dependencies": {
     "body-parser": "~1.15.0",
     "compress": "^0.99.0",
+    "compression": "^1.6.1",
     "cookie-parser": "~1.4.1",
     "cors": "^2.7.1",
     "debug": "~2.2.0",

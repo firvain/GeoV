@@ -1,3 +1,6 @@
+/* eslint-env shelljs */
+
+// https://github.com/shelljs/shelljs
 require('shelljs/global');
 env.NODE_ENV = 'production';
 const path = require('path');

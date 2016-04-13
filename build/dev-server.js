@@ -1,5 +1,5 @@
 /* eslint-disable */
-var path = require('path')
+const path = require('path')
 const express = require('express');
 const webpack = require('webpack');
 const config = require('../config');
@@ -10,9 +10,9 @@ const proxyMiddleware = require('http-proxy-middleware');
 
 
 const port = process.env.PORT || config.dev.port;
-var proxyTable = config.dev.proxyTable;
-var app = express();
-var compiler = webpack(webpackConfig);
+const proxyTable = config.dev.proxyTable;
+const app = express();
+const compiler = webpack(webpackConfig);
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   stats: {
@@ -21,7 +21,7 @@ const devMiddleware = require('webpack-dev-middleware')(compiler, {
   },
 });
 
-var hotMiddleware = require('webpack-hot-middleware')(compiler);
+const hotMiddleware = require('webpack-hot-middleware')(compiler);
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
@@ -47,7 +47,7 @@ app.use(devMiddleware);
 // compilation error display
 app.use(hotMiddleware);
 // serve pure static assets
-const staticPath = path.join(config.build.assetsPublicPath, config.build.assetsSubDirectory)
+const staticPath = path.posix.join(config.build.assetsPublicPath, config.build.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
 module.exports = app.listen(port, function (err) {
