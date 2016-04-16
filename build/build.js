@@ -1,3 +1,6 @@
+/* eslint-env shelljs */
+
+// https://github.com/shelljs/shelljs
 require('shelljs/global');
 env.NODE_ENV = 'production';
 const path = require('path');
@@ -11,7 +14,7 @@ spinner.start();
 
 const assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory);
 rm('-rf', assetsPath);
-mkdir('-p',assetsPath);
+mkdir('-p', assetsPath);
 cp('-R', 'static/', assetsPath);
 // cp('-R', 'src/assets/images', 'dist');
 

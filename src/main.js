@@ -31,7 +31,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   hashbang: false,
-  // history: true;
+  history: true,
 });
 
 // TODO: Convert requires into ES6 syntax once its implementated

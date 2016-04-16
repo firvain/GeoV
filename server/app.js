@@ -7,8 +7,10 @@ const bodyParser = require('body-parser');
 const logger = require('./utils/logger');
 const cors = require('cors');
 const api = require('./routes/api');
+const compress = require('compression');
 
 const app = express();
+app.use(compress());
 // console.log(logger);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

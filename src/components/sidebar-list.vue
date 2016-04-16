@@ -58,7 +58,7 @@ export default {
       const jwtHeader = { Authorization: 'Bearer ' + localStorage.getItem('idToken') }; // eslint-disable-line
       // console.log(this);
       this.$http({
-        url: 'http://127.0.0.1:8080/api/users',
+        url: `${config.endpoint}/api/users`,
         method: 'GET',
         headers: jwtHeader,
       })
