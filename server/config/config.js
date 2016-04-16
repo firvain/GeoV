@@ -18,6 +18,7 @@ const config = {
       AUTH0_DOMAIN: 'terracognita.eu.auth0.com',
       AUTH0_CALLBACK_URL: 'http://127.0.0.1:8080/callback',
     },
+    endpoint: 'http://127.0.0.1:8080',
   },
   production: {
     connection: {
@@ -36,6 +37,7 @@ const config = {
       AUTH0_DOMAIN: 'terracognita.eu.auth0.com',
       AUTH0_CALLBACK_URL: 'http://127.0.0.1:8080/callback',
     },
+    endpoint: 'http://188.226.158.168',
   },
 
 };

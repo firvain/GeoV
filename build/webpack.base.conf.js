@@ -3,7 +3,7 @@ const path = require('path');
 const config = require('../config');
 const CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 const projectRoot = path.resolve(__dirname, '../');
-const cssLoaders = require('./css-loaders');
+const utils = require('./utils');
 module.exports = {
   entry: {
     app: './src/main.js',
@@ -59,10 +59,10 @@ module.exports = {
       //   test: /\.css$/,
       //   loader: 'vue-style!css'
       // },
-      {
-        test: /\.scss$/,
-        loaders: ['vue-style', 'css', 'sass']
-      },
+      // {
+      //   test: /\.scss$/,
+      //   loaders: ['vue-style', 'css', 'sass']
+      // },
       {
         test: /\.json$/,
         loader: 'json',
@@ -82,7 +82,7 @@ module.exports = {
     ],
   },
    vue: {
-    loaders: cssLoaders(),
+    loaders: utils.cssLoaders(),
     // configure autoprefixer
     autoprefixer: {
       browsers: ['last 4 versions']
