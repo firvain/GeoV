@@ -22,6 +22,7 @@ app.get('/error', (req, res, next) => {
   throw new Error('test error');
 });
 if (app.get('env') === 'production') {
+  logger.remove(logger.transports.console);
   app.use(morganLogger('combined', {
     skip(req, res) { return res.statusCode < 400; },
     stream: logger.stream,
