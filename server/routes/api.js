@@ -14,8 +14,8 @@ const jwtCheck = jwt({
 // console.log(config);
 /* GET users listing. */
 const users = require('./controllers/users');
-const category = require('./controllers/category');
+const categories = require('./controllers/categories');
 
-router.use('/', category);
-router.use('/',  users);
+router.use('/', categories);
+router.use('/', users);
 module.exports = router;

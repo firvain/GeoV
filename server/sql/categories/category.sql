@@ -1,6 +1,6 @@
 select
-  name,
+  description as name,
   id as value
-from category
+from categories
 where
   parent_id is null

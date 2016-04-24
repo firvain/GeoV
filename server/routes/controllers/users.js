@@ -29,15 +29,17 @@ router.route('/users')
   const obj = {};
   obj.firstName = _.lowerCase(req.body.firstName) || '';
   obj.lastName = _.lowerCase(req.body.lastName) || '';
-  obj.phoneNumber = _.lowerCase(req.body.phoneNumber) || '';
-  obj.faxNumber = _.lowerCase(req.body.faxNumber) || '';
+  obj.phone = _.lowerCase(req.body.phone) || '';
+  obj.fax = _.lowerCase(req.body.fax) || '';
   obj.email = _.lowerCase(req.body.email) || '';
   obj.streetName = _.lowerCase(req.body.streetName) || '';
   obj.streetNumber = _.lowerCase(req.body.streetNumber) || '';
   obj.psCode = _.lowerCase(req.body.psCode) || '';
   obj.city = _.lowerCase(req.body.city) || '';
   obj.country = _.lowerCase(req.body.country) || '';
-  obj.isActive = (req.body.isActive) || true;
+  obj.isActive = _.lowerCase(req.body.isActive) || true;
+  obj.isAgency = _.lowerCase(req.body.isAgency) || true;
+
   db.one(query.add, obj)
   .then((data) => {
     res.status(200).json(data);

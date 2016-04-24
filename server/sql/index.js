@@ -48,7 +48,7 @@ module.exports = {
     total: sql('users/total.sql'),
   },
   category: {
-    category: sql('category/category.sql'),
-    subcategory: sql('category/subcategory.sql'),
+    category: sql('categories/category.sql'),
+    subcategory: sql('categories/subcategory.sql'),
   },
 };
