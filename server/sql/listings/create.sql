@@ -1,6 +1,6 @@
 CREATE TABLE public.listings (
   id            serial NOT NULL,
-  property_gid  integer NOT NULL,
+  estates_gid  integer NOT NULL,
   sale          boolean DEFAULT false,
   start_date    date NOT NULL DEFAULT CURRENT_DATE,
   end_end       date,
@@ -9,12 +9,12 @@ CREATE TABLE public.listings (
   /* Keys */
   CONSTRAINT listing_pkey
     PRIMARY KEY (id),
-  CONSTRAINT listing_property_id_key
+  CONSTRAINT listing_estates_gid_key
     UNIQUE (property_id),
   /* Foreign keys */
   CONSTRAINT foreign_key01
-    FOREIGN KEY (property_gid)
-    REFERENCES public.property(gid)
+    FOREIGN KEY (estates_gid)
+    REFERENCES public.estates(gid)
 ) WITH (
     OIDS = FALSE
   );

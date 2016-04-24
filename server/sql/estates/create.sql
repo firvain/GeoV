@@ -1,4 +1,4 @@
-CREATE TABLE public.properties (
+CREATE TABLE public.estates (
   gid                  serial NOT NULL PRIMARY KEY,
   category_id          integer,
   living_area          integer,
@@ -44,12 +44,18 @@ CREATE TABLE public.properties (
   country              text,
   the_geom             public.geometry,
   /* Keys */
-  CONSTRAINT property_pkey
+  CONSTRAINT estates_pkey
     PRIMARY KEY (gid),
   /* Foreign keys */
   CONSTRAINT foreign_key01
     FOREIGN KEY (category_id)
-    REFERENCES public.categories(id)
+    REFERENCES public.categories(id),
+  CONSTRAINT foreign_key02
+    FOREIGN KEY (road_type)
+    REFERENCES public.road_types(id),
+  CONSTRAINT foreign_key03
+    FOREIGN KEY (frames_type)
+    REFERENCES public.frames_type(id)
 ) WITH (
     OIDS = FALSE
-  )
+  );

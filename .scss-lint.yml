@@ -43,4 +43,4 @@ linters:
 
   StringQuotes:
     enabled: true
-    style: single_quotes
+    style: double_quotes

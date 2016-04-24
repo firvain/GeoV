@@ -56,9 +56,13 @@ router.route('/users')
 router.route('/users/:user_id')
 .get((req, res) => {
   const id = parseInt(req.params.user_id, 10);
-  db.one(query.find, [id])
+  db.oneOrNone(query.find, [id])
   .then((data) => {
-    res.status(200).json(data);
+    if (data === null) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(data);
+    }
   })
   .catch((error) => {
     res.status(500).json({
@@ -83,8 +87,38 @@ router.route('/users/:user_id')
       error: error.message || error,
     });
   });
+})
+.put((req, res) => {
+  const id = parseInt(req.params.user_id, 10);
+  const obj = {};
+  obj.firstName = _.lowerCase(req.body.firstName) || '';
+  obj.lastName = _.lowerCase(req.body.lastName) || '';
+  obj.phone = _.lowerCase(req.body.phone) || '';
+  obj.fax = _.lowerCase(req.body.fax) || '';
+  obj.email = _.lowerCase(req.body.email) || '';
+  obj.streetName = _.lowerCase(req.body.streetName) || '';
+  obj.streetNumber = _.lowerCase(req.body.streetNumber) || '';
+  obj.psCode = _.lowerCase(req.body.psCode) || '';
+  obj.city = _.lowerCase(req.body.city) || '';
+  obj.country = _.lowerCase(req.body.country) || '';
+  obj.isActive = _.lowerCase(req.body.isActive) || true;
+  obj.isAgency = _.lowerCase(req.body.isAgency) || true;
+  obj.id = id;
+  db.oneOrNone(query.update, obj)
+  .then((data) => {
+    if (data === null) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(data);
+    }
+  })
+  .catch((error) => {
+    res.status(500).json({
+      success: false,
+      error: error.message || error,
+    });
+  });
 });
-
 
 // router.route('/users/:user_id/:property_id')
 // .get((req, res, next) => {

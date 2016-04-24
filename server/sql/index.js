@@ -1,4 +1,3 @@
-'use strict';
 
 const QueryFile = require('pg-promise').QueryFile;
 
@@ -7,9 +6,11 @@ function sql(file) {
   const path = `./sql/${file}`;
 
   const options = {
+    debug: true,
     // minifying the SQL is always advised;
     // see also option 'compress' in the API;
     minify: true,
+    compress: true,
     // Support for 'params' was added in pg-promise 3.2.0;
     params: {
       // Showing how to use static pre-formatting parameters -
@@ -50,5 +51,15 @@ module.exports = {
   category: {
     category: sql('categories/category.sql'),
     subcategory: sql('categories/subcategory.sql'),
+  },
+  properties: {
+    all: sql('properties/all.sql'),
+    find: sql('properties/find.sql'),
+  },
+  listings: {
+    add: sql('listings/add.sql'),
+    all: sql('listings/all.sql'),
+    find: sql('listings/find.sql'),
+    total: sql('listings/all.sql'),
   },
 };

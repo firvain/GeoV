@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express');
 const router = express.Router();
 // const pg = require('pg');
@@ -15,7 +13,11 @@ const jwtCheck = jwt({
 /* GET users listing. */
 const users = require('./controllers/users');
 const categories = require('./controllers/categories');
+const listings = require('./controllers/listings');
+const properties = require('./controllers/properties');
 
 router.use('/', categories);
 router.use('/', users);
+router.use('/', listings);
+router.use('/', properties);
 module.exports = router;

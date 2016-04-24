@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * check if element has class
  * @param {[string]} className

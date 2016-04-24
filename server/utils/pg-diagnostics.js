@@ -1,5 +1,4 @@
 'use strict';
-
 // In this example we are showing how to properly use pg-monitor to log
 // errors in a DEV and PROD environments.
 
